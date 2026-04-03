@@ -3,1107 +3,669 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Omindu Etipola — Engineering Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <title>Omindu Etipola | Engineering Portfolio</title>
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: 'Inter', system-ui, sans-serif;
-      color: #17211b;
-      background:
-        radial-gradient(circle at top left, rgba(29,158,117,0.07), transparent 30%),
-        linear-gradient(180deg, #fcfdfc 0%, #f7faf8 100%);
-      -webkit-font-smoothing: antialiased;
-    }
-
     :root{
-      --accent:#1D9E75;
-      --accent-dark:#0E6E55;
-      --accent-light:#E7F7F0;
-      --text:#17211b;
-      --muted:#5f6d64;
-      --hint:#819087;
-      --border:rgba(17, 34, 24, 0.10);
-      --card:#ffffff;
-      --card-2:#f7faf8;
-      --shadow:0 18px 48px rgba(17, 34, 24, 0.08);
-      --radius:18px;
-      --radius-lg:28px;
-      --serif:'DM Serif Display', Georgia, serif;
+      --navy:#2f3f4a;
+      --navy-dark:#24313a;
+      --slate:#5e6c74;
+      --light:#f4f5f6;
+      --panel:#ffffff;
+      --line:#d7dadd;
+      --blue:#d9e7f0;
+      --blue-dark:#7f9db1;
+      --accent:#8fa8b9;
+      --text:#1d2226;
     }
 
-    a { color: inherit; }
-
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 2rem;
-      height: 72px;
-      background: rgba(252,253,252,0.85);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:#d7e7f1;
     }
 
-    .nav-logo{
-      text-decoration: none;
-      font-family: var(--serif);
-      font-size: 1.35rem;
-      letter-spacing: -0.02em;
+    .page-shell{
+      max-width:1100px;
+      margin:0 auto;
+      background:#fff;
+      min-height:100vh;
+      box-shadow:0 0 0 1px rgba(0,0,0,0.06);
     }
-    .nav-logo span{ color: var(--accent); }
 
-    .nav-links{
+    .banner{
+      height:155px;
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(rgba(255,255,255,0.18), rgba(255,255,255,0.18)),
+        linear-gradient(180deg, #bcc8d1 0%, #aab8c2 55%, #8a98a3 100%);
+      border-bottom:1px solid var(--line);
+    }
+
+    .banner::before{
+      content:"UPLOAD SKYLINE IMAGE LATER";
+      position:absolute;
+      inset:0;
       display:flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .nav-links button{
-      border: none;
-      background: transparent;
-      color: var(--muted);
-      font: inherit;
-      font-size: 0.92rem;
-      padding: 0.7rem 1rem;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-    .nav-links button:hover{
-      background: rgba(29,158,117,0.08);
-      color: var(--text);
-    }
-    .nav-links button.active{
-      background: var(--accent-light);
-      color: var(--accent-dark);
-      font-weight: 600;
-    }
-
-    .page{ display:none; }
-    .page.active{ display:block; }
-
-    .container{
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    .hero{
-      padding: 5rem 0 3rem;
-    }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 2rem;
-      align-items: center;
-    }
-    .eyebrow{
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-size: 0.75rem;
-      color: var(--accent-dark);
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    .hero h1{
-      font-family: var(--serif);
-      font-size: clamp(3.3rem, 7vw, 5.8rem);
-      line-height: 0.95;
-      letter-spacing: -0.04em;
-      margin: 0 0 1.2rem;
-    }
-    .hero h1 em{
-      display:block;
-      color: var(--accent);
-      font-style: italic;
-    }
-    .hero p{
-      margin: 0 0 1.4rem;
-      max-width: 620px;
-      color: var(--muted);
-      font-size: 1.08rem;
-      line-height: 1.8;
-    }
-    .tag-row{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 0.65rem;
-      margin-bottom: 1.4rem;
-    }
-    .tag{
-      padding: 0.55rem 0.9rem;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      background: #fff;
-      border: 1px solid var(--border);
-      color: var(--muted);
-    }
-    .tag.accent{
-      background: var(--accent-light);
-      color: var(--accent-dark);
-      border-color: transparent;
-    }
-
-    .cta-row{
-      display:flex;
-      gap: 0.85rem;
-      flex-wrap: wrap;
-    }
-    .btn{
-      display:inline-flex;
       align-items:center;
       justify-content:center;
-      text-decoration:none;
-      border-radius: 999px;
-      padding: 0.9rem 1.2rem;
-      font-size: 0.94rem;
-      font-weight: 700;
-      border: 1px solid var(--border);
-      background:#fff;
-      color: var(--text);
-      transition: 0.2s ease;
-      cursor: pointer;
-    }
-    .btn:hover{
-      transform: translateY(-1px);
-      box-shadow: var(--shadow);
-    }
-    .btn.primary{
-      background: var(--accent);
-      color: #fff;
-      border-color: transparent;
-    }
-    .btn.primary:hover{
-      background: var(--accent-dark);
+      font-size:13px;
+      letter-spacing:1.3px;
+      color:#3e4a52;
+      font-weight:700;
+      background:
+        linear-gradient(to top,
+          rgba(50,62,71,0.85) 0 28px,
+          transparent 28px 100%);
     }
 
-    .hero-visual{
-      background: linear-gradient(145deg, #ffffff, #f0f7f3);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      min-height: 440px;
-      padding: 1.4rem;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden;
-      position: relative;
+    .site-title{
+      text-align:center;
+      font-size:52px;
+      font-weight:700;
+      letter-spacing:-1px;
+      margin:18px 0 12px;
+      color:#222;
     }
-    .hero-visual::before{
-      content:"";
-      position:absolute;
-      inset:auto -80px -120px auto;
-      width: 280px;
-      height: 280px;
-      background: radial-gradient(circle, rgba(29,158,117,0.18), transparent 65%);
-      pointer-events:none;
-    }
-    .mock-top{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      color: var(--hint);
-      font-size: 0.78rem;
-      margin-bottom: 1rem;
-    }
-    .mock-card{
+
+    .top-nav{
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      text-align:center;
+      padding:0;
       background:#fff;
-      border:1px solid var(--border);
-      border-radius: 22px;
-      padding: 1.4rem;
-      position: relative;
-      z-index: 1;
     }
-    .mock-card h3{
-      margin:0 0 0.6rem;
-      font-size: 1.15rem;
+
+    .top-nav button{
+      background:none;
+      border:none;
+      padding:14px 18px;
+      font-size:13px;
+      font-weight:700;
+      color:#222;
+      cursor:pointer;
+      text-transform:uppercase;
     }
-    .mock-card p{
-      font-size: 0.93rem;
-      line-height: 1.75;
-      color: var(--muted);
-      margin:0 0 1rem;
+
+    .top-nav button:hover,
+    .top-nav button.active{
+      color:var(--blue-dark);
     }
-    .mock-chip-row{
+
+    .page{display:none; padding:28px 42px 40px;}
+    .page.active{display:block;}
+
+    h2.section-title{
+      font-size:19px;
+      margin:0 0 18px;
+      border-bottom:1px solid var(--line);
+      padding-bottom:10px;
+    }
+
+    .welcome{
+      font-size:18px;
+      font-weight:700;
+      margin-bottom:24px;
+    }
+
+    .intro-grid{
+      display:grid;
+      grid-template-columns:260px 1fr;
+      gap:26px;
+      align-items:start;
+      margin-bottom:34px;
+    }
+
+    .portrait-box{
+      border:1px solid var(--line);
+      background:#f7f7f7;
+      padding:12px;
+      text-align:center;
+    }
+
+    .portrait-placeholder{
+      height:290px;
+      border:1px solid #cfcfcf;
+      background:linear-gradient(180deg, #ececec, #d7d7d7);
       display:flex;
-      gap:0.5rem;
-      flex-wrap:wrap;
-    }
-    .mock-chip{
-      font-size:0.74rem;
-      padding:0.45rem 0.7rem;
-      border-radius:999px;
-      background: var(--accent-light);
-      color: var(--accent-dark);
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:18px;
+      color:#555;
+      font-size:14px;
       font-weight:700;
     }
-    .mock-stats{
-      margin-top: 1rem;
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.8rem;
-    }
-    .mock-stat{
-      background: #f7faf8;
-      border-radius: 16px;
-      padding: 0.85rem;
-      border: 1px solid var(--border);
-    }
-    .mock-stat strong{
-      display:block;
-      font-size: 1rem;
-      margin-bottom: 0.2rem;
-    }
-    .mock-stat span{
-      font-size: 0.78rem;
-      color: var(--hint);
+
+    .caption{
+      font-size:12px;
+      color:#666;
+      margin-top:8px;
     }
 
-    .section{
-      margin: 0 0 4rem;
-    }
-    .section-head{
+    .bio-panel{
+      border:4px solid #222;
+      padding:22px 24px;
+      min-height:290px;
       display:flex;
-      justify-content: space-between;
-      align-items:end;
-      gap:1rem;
-      margin-bottom: 1.25rem;
-      padding-bottom: 0.9rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .section-label{
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-size: 0.75rem;
-      color: var(--hint);
-      font-weight: 700;
-    }
-    .section-head p{
-      margin:0;
-      color: var(--hint);
-      font-size: 0.92rem;
+      flex-direction:column;
+      justify-content:center;
+      background:#fff;
     }
 
-    .featured-grid{
+    .bio-panel p{
+      line-height:1.78;
+      margin:0 0 16px;
+      font-size:15px;
+    }
+
+    .quick-facts{
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.15rem;
+      grid-template-columns:repeat(3, 1fr);
+      gap:14px;
+      margin:8px 0 28px;
     }
+
+    .fact{
+      border:1px solid var(--line);
+      background:#f8f9fa;
+      padding:14px;
+    }
+
+    .fact strong{
+      display:block;
+      font-size:13px;
+      margin-bottom:6px;
+      text-transform:uppercase;
+      color:var(--navy-dark);
+    }
+
+    .fact span{
+      font-size:14px;
+      color:#555;
+      line-height:1.5;
+    }
+
+    .subtle-box{
+      border:1px solid var(--line);
+      background:#fafafa;
+      padding:16px 18px;
+      margin-bottom:18px;
+    }
+
+    .subtle-box h3{
+      margin:0 0 8px;
+      font-size:16px;
+      color:var(--navy-dark);
+    }
+
+    .subtle-box p,
+    .subtle-box li{
+      font-size:14px;
+      line-height:1.7;
+      color:#555;
+    }
+
+    .subtle-box ul{
+      margin:10px 0 0 18px;
+      padding:0;
+    }
+
+    .portfolio-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
     .project-card{
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      overflow: hidden;
-      cursor: pointer;
-      box-shadow: 0 12px 28px rgba(17,34,24,0.04);
-      transition: 0.22s ease;
+      border:1px solid var(--line);
+      background:#fff;
+      padding:16px 18px 18px;
     }
-    .project-card:hover{
-      transform: translateY(-6px);
-      box-shadow: var(--shadow);
-      border-color: rgba(29,158,117,0.28);
-    }
-    .project-thumb{
-      height: 200px;
+
+    .project-image{
+      height:150px;
+      border:1px solid #cfd5da;
+      background:linear-gradient(180deg,#eef2f5,#dfe6ea);
       display:flex;
       align-items:center;
       justify-content:center;
-      padding: 1rem;
       text-align:center;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--accent-dark);
-      background:
-        radial-gradient(circle at top left, rgba(29,158,117,0.18), transparent 40%),
-        linear-gradient(135deg, #edf8f2, #f8fbf9);
-      border-bottom: 1px solid var(--border);
+      color:#5d6972;
+      font-size:13px;
+      font-weight:700;
+      margin-bottom:14px;
+      padding:12px;
     }
-    .project-body{
-      padding: 1.15rem;
+
+    .project-card h3{
+      margin:0 0 8px;
+      font-size:17px;
+      color:#1f2730;
     }
-    .project-title{
-      font-size: 1.05rem;
-      margin: 0 0 0.45rem;
-      font-weight: 700;
+
+    .project-card p{
+      margin:0;
+      font-size:14px;
+      line-height:1.72;
+      color:#565f66;
     }
-    .project-desc{
-      font-size: 0.93rem;
-      line-height: 1.7;
-      color: var(--muted);
-      margin: 0 0 0.85rem;
+
+    .project-card .meta{
+      margin-top:10px;
+      font-size:12px;
+      font-weight:700;
+      color:var(--blue-dark);
+      text-transform:uppercase;
+      letter-spacing:.4px;
     }
-    .project-tags{
+
+    .capstone-layout{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:24px;
+      align-items:start;
+      margin-bottom:28px;
+    }
+
+    .capstone-summary p{
+      font-size:15px;
+      line-height:1.8;
+      color:#4f5960;
+      margin:0 0 14px;
+    }
+
+    .side-image{
+      border:1px solid var(--line);
+      background:#f7f7f7;
+      padding:12px;
+    }
+
+    .side-image .frame{
+      height:260px;
+      border:1px solid #cfcfcf;
+      background:linear-gradient(180deg,#eceff2,#d8dfe5);
       display:flex;
-      flex-wrap:wrap;
-      gap: 0.5rem;
-    }
-    .project-tag{
-      font-size: 0.72rem;
-      padding: 0.42rem 0.65rem;
-      border-radius: 999px;
-      background: var(--accent-light);
-      color: var(--accent-dark);
-      font-weight: 700;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:#59646c;
+      font-size:13px;
+      font-weight:700;
+      padding:18px;
     }
 
     .two-col{
       display:grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 1.3rem;
-      align-items: start;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
     }
 
-    .about-card, .experience-card, .summary-card, .outcome-card, .reflection-card{
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 1.35rem;
-      box-shadow: 0 10px 25px rgba(17,34,24,0.04);
+    .list-panel{
+      border:1px solid var(--line);
+      background:#fafafa;
+      padding:16px 18px;
     }
 
-    .about-card p, .experience-card p, .reflection-card p, .summary-card p{
-      color: var(--muted);
-      line-height: 1.75;
-      font-size: 0.98rem;
+    .list-panel h3{
+      margin:0 0 8px;
+      font-size:16px;
+      color:#1f2730;
     }
 
-    .skills-grid{
+    .list-panel ul{
+      margin:8px 0 0 18px;
+      padding:0;
+    }
+
+    .list-panel li{
+      font-size:14px;
+      line-height:1.7;
+      color:#555;
+      margin-bottom:6px;
+    }
+
+    .reflection p{
+      font-size:15px;
+      line-height:1.84;
+      color:#505a61;
+      margin:0 0 16px;
+    }
+
+    .contact-row{
       display:flex;
+      gap:12px;
       flex-wrap:wrap;
-      gap: 0.65rem;
-    }
-    .pill{
-      padding: 0.58rem 0.85rem;
-      border-radius: 999px;
-      background: var(--accent-light);
-      color: var(--accent-dark);
-      font-size: 0.84rem;
-      font-weight: 700;
+      margin-top:20px;
     }
 
-    .experience-list{
-      display:grid;
-      gap: 1rem;
-    }
-    .experience-card h3{
-      margin:0 0 0.15rem;
-      font-size: 1rem;
-    }
-    .experience-meta{
-      color: var(--hint);
-      font-size: 0.84rem;
-      margin-bottom: 0.8rem;
-    }
-    .experience-card ul{
-      margin: 0;
-      padding-left: 1rem;
-      color: var(--muted);
-    }
-    .experience-card li{
-      margin-bottom: 0.55rem;
-      line-height: 1.7;
-      font-size: 0.93rem;
-    }
-
-    .capstone-hero{
-      padding: 4.5rem 0 2rem;
-    }
-    .capstone-grid{
-      display:grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 1.4rem;
-      align-items: center;
-    }
-    .capstone-title{
-      font-family: var(--serif);
-      font-size: clamp(2.5rem, 5vw, 4.4rem);
-      line-height: 0.98;
-      margin: 0 0 1rem;
-      letter-spacing: -0.04em;
-    }
-    .capstone-copy{
-      color: var(--muted);
-      font-size: 1.03rem;
-      line-height: 1.85;
-      margin-bottom: 1.15rem;
-    }
-    .meta-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:0.6rem;
-    }
-
-    .capstone-visual{
-      min-height: 420px;
-      border-radius: 28px;
-      border: 1px solid var(--border);
-      background:
-        radial-gradient(circle at top right, rgba(29,158,117,0.18), transparent 36%),
-        linear-gradient(145deg, #ffffff, #eef7f3);
-      box-shadow: var(--shadow);
-      padding: 1.4rem;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-    }
-    .visual-pane{
-      background:#fff;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 1rem;
-    }
-    .visual-frame{
-      height: 180px;
-      border-radius: 16px;
-      border: 1px dashed rgba(29,158,117,0.28);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      color: var(--accent-dark);
-      font-size: 0.95rem;
-      background: linear-gradient(135deg, #f5fbf8, #eef7f3);
-      padding: 1rem;
-    }
-    .visual-caption{
-      margin-top: 0.8rem;
-      font-size: 0.83rem;
-      line-height: 1.65;
-      color: var(--hint);
-    }
-
-    .summary-grid{
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-    }
-    .summary-card h4{
-      margin: 0 0 0.45rem;
-      font-size: 0.76rem;
-      color: var(--accent-dark);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .timeline{
-      display:grid;
-      gap: 1rem;
-    }
-    .timeline-item{
-      display:grid;
-      grid-template-columns: 52px 1fr;
-      gap: 1rem;
-      align-items: start;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 1.1rem;
-    }
-    .timeline-num{
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: var(--accent-light);
-      color: var(--accent-dark);
-      font-weight: 800;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size: 1rem;
-    }
-    .timeline-item h3{
-      margin: 0 0 0.35rem;
-      font-size: 1rem;
-    }
-    .timeline-item p{
-      margin:0;
-      color: var(--muted);
-      line-height: 1.75;
-      font-size: 0.95rem;
-    }
-
-    .gallery-grid{
-      display:grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      gap: 1rem;
-    }
-    .gallery-main, .gallery-side{
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 1rem;
-    }
-    .gallery-main .frame, .gallery-side .frame{
-      background: linear-gradient(135deg, #f5fbf8, #eef7f3);
-      border: 1px dashed rgba(29,158,117,0.28);
-      border-radius: 18px;
-      min-height: 220px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      color: var(--accent-dark);
-      padding: 1rem;
-      font-weight: 700;
-    }
-    .gallery-side-grid{
-      display:grid;
-      gap: 1rem;
-    }
-    .caption{
-      margin-top: 0.75rem;
-      font-size: 0.84rem;
-      color: var(--hint);
-      line-height: 1.65;
-    }
-
-    .outcome-grid{
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-    }
-    .outcome-card h4{
-      margin: 0 0 0.45rem;
-      font-size: 0.8rem;
-      color: var(--accent-dark);
-      text-transform: uppercase;
-      letter-spacing: 0.11em;
-    }
-    .outcome-card p{
-      margin:0;
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.72;
-    }
-
-    .takeaways{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-    .takeaway{
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius:18px;
-      padding: 1rem 1.05rem;
-      color: var(--muted);
-      line-height: 1.72;
-      font-size: 0.92rem;
-    }
-
-    .reflection-wrap{
-      max-width: 900px;
-      padding-top: 4.5rem;
-    }
-    .reflection-card{
-      padding: 2rem;
-    }
-    .reflection-title{
-      font-family: var(--serif);
-      font-size: clamp(2.3rem, 4vw, 3.8rem);
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin: 0 0 1rem;
-    }
-    .pull-quote{
-      margin: 1.2rem 0 1.6rem;
-      padding: 1rem 1.1rem;
-      border-left: 4px solid var(--accent);
-      background: var(--accent-light);
-      border-radius: 12px;
-      color: var(--accent-dark);
-      font-weight: 600;
-      line-height: 1.7;
+    .link-btn{
+      display:inline-block;
+      border:1px solid #bcc5cb;
+      padding:10px 15px;
+      text-decoration:none;
+      color:#26333b;
+      background:#f8f8f8;
+      font-size:13px;
+      font-weight:700;
     }
 
     footer{
-      margin-top: 4rem;
-      border-top: 1px solid var(--border);
-      padding: 2rem 0 2.3rem;
-      color: var(--hint);
-      font-size: 0.88rem;
-      text-align: center;
+      border-top:1px solid var(--line);
+      padding:18px 42px 28px;
+      color:#6d777d;
+      font-size:12px;
+      text-align:center;
     }
 
-    @media (max-width: 1024px){
-      .featured-grid,
-      .summary-grid,
-      .outcome-grid{
-        grid-template-columns: 1fr 1fr;
-      }
-      .hero-grid,
-      .capstone-grid,
+    @media (max-width: 900px){
+      .intro-grid,
+      .capstone-layout,
       .two-col,
-      .gallery-grid{
-        grid-template-columns: 1fr;
+      .portfolio-grid,
+      .quick-facts{
+        grid-template-columns:1fr;
       }
-    }
 
-    @media (max-width: 760px){
-      nav{
-        padding: 0 1rem;
-        height: auto;
-        min-height: 72px;
-        gap: 0.75rem;
-        align-items: flex-start;
-        flex-direction: column;
-        justify-content: center;
+      .page{
+        padding:24px 20px 34px;
       }
-      .container{
-        padding: 0 1rem;
+
+      footer{
+        padding:18px 20px 28px;
       }
-      .hero{
-        padding-top: 2.75rem;
-      }
-      .featured-grid,
-      .summary-grid,
-      .outcome-grid,
-      .takeaways{
-        grid-template-columns: 1fr;
-      }
-      .hero h1{
-        font-size: 3.2rem;
-      }
-      .capstone-title, .reflection-title{
-        font-size: 2.5rem;
-      }
-      .timeline-item{
-        grid-template-columns: 1fr;
+
+      .site-title{
+        font-size:40px;
       }
     }
   </style>
 </head>
 <body>
-  <nav>
-    <a class="nav-logo" href="#" onclick="showPage('home')">Omindu <span>Etipola</span></a>
-    <div class="nav-links">
-      <button onclick="showPage('home')" id="tab-home" class="active">Home</button>
-      <button onclick="showPage('capstone')" id="tab-capstone">Hermes Project</button>
-      <button onclick="showPage('reflection')" id="tab-reflection">Reflection</button>
+  <div class="page-shell">
+    <div class="banner"></div>
+    <div class="site-title">Omindu Etipola</div>
+
+    <div class="top-nav">
+      <button class="active" id="tab-home" onclick="showPage('home')">Home</button>
+      <button id="tab-about" onclick="showPage('about')">About</button>
+      <button id="tab-portfolio" onclick="showPage('portfolio')">Portfolio</button>
+      <button id="tab-capstone" onclick="showPage('capstone')">Capstone</button>
+      <button id="tab-reflection" onclick="showPage('reflection')">Reflection</button>
     </div>
-  </nav>
 
-  <div id="page-home" class="page active">
-    <div class="container">
-      <section class="hero">
-        <div class="hero-grid">
-          <div>
-            <div class="eyebrow">Mechanical Engineering · Aerospace Option · UBCO · April 2026</div>
-            <h1>Omindu <em>Etipola</em></h1>
-            <p>
-              I’m a graduating mechanical engineering student focused on aerospace systems, CAD design,
-              prototyping, and practical problem solving. I enjoy building projects that move from concept
-              to something real, testable, and useful.
-            </p>
-            <div class="tag-row">
-              <span class="tag accent">Aerospace Systems</span>
-              <span class="tag accent">CAD & Design</span>
-              <span class="tag accent">Prototyping</span>
-              <span class="tag">UBCO Class of 2026</span>
-              <span class="tag">Open to Work</span>
-            </div>
-            <div class="cta-row">
-              <button class="btn primary" onclick="showPage('capstone')">View Hermes Capstone</button>
-              <a class="btn" href="https://www.linkedin.com/in/" target="_blank" rel="noopener">LinkedIn</a>
-              <a class="btn" href="mailto:your@email.com">Email</a>
-            </div>
-          </div>
+    <section class="page active" id="page-home">
+      <div class="welcome">Welcome to the engineering portfolio of Omindu Etipola</div>
 
-          <div class="hero-visual">
-            <div class="mock-top">
-              <span>Featured engineering work</span>
-              <span>2025–2026</span>
-            </div>
-            <div class="mock-card">
-              <h3>Hermes VTOL Relay UAV</h3>
-              <p>
-                A quadcopter VTOL fixed-wing concept designed to support longer-range communication
-                during search and rescue operations in remote terrain.
-              </p>
-              <div class="mock-chip-row">
-                <span class="mock-chip">Capstone</span>
-                <span class="mock-chip">CAD</span>
-                <span class="mock-chip">Testing</span>
-                <span class="mock-chip">Systems Design</span>
-              </div>
-              <div class="mock-stats">
-                <div class="mock-stat">
-                  <strong>2 m</strong>
-                  <span>Wingspan</span>
-                </div>
-                <div class="mock-stat">
-                  <strong>VTOL</strong>
-                  <span>Deployment</span>
-                </div>
-                <div class="mock-stat">
-                  <strong>Relay</strong>
-                  <span>Mission focus</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head">
-          <div class="section-label">Featured Projects</div>
-          <p>Start with the work, not just the summary.</p>
+      <div class="intro-grid">
+        <div class="portrait-box">
+          <div class="portrait-placeholder">UPLOAD PORTRAIT PHOTO HERE LATER</div>
+          <div class="caption">Suggested file: images/portrait.jpg</div>
         </div>
 
-        <div class="featured-grid">
-          <div class="project-card" onclick="showPage('capstone')">
-            <div class="project-thumb">Replace with your Hermes render or prototype photo</div>
-            <div class="project-body">
-              <div class="project-title">Hermes VTOL Relay UAV</div>
-              <div class="project-desc">
-                A capstone project exploring a relay UAV platform intended to extend communication range in remote search and rescue missions.
-              </div>
-              <div class="project-tags">
-                <span class="project-tag">Capstone</span>
-                <span class="project-tag">VTOL</span>
-                <span class="project-tag">CAD</span>
-                <span class="project-tag">Prototyping</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-card">
-            <div class="project-thumb">Replace with EMBR image</div>
-            <div class="project-body">
-              <div class="project-title">EMBR Robot</div>
-              <div class="project-desc">
-                A modular fire-retardant marking system developed as a practical design project with strong systems integration elements.
-              </div>
-              <div class="project-tags">
-                <span class="project-tag">Robotics</span>
-                <span class="project-tag">Design</span>
-                <span class="project-tag">Assembly</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-card">
-            <div class="project-thumb">Replace with machining or CAD image</div>
-            <div class="project-body">
-              <div class="project-title">Manufacturing + CAD Projects</div>
-              <div class="project-desc">
-                Selected work across machining, CAD modelling, prototyping, and applied engineering problem solving.
-              </div>
-              <div class="project-tags">
-                <span class="project-tag">Machining</span>
-                <span class="project-tag">SolidWorks</span>
-                <span class="project-tag">Hands-on</span>
-              </div>
-            </div>
-          </div>
+        <div class="bio-panel">
+          <p>
+            I am a mechanical engineering student in the Aerospace Option at UBC Okanagan with experience in
+            CAD design, manufacturing, plant engineering, and applied project work. My strongest work sits at
+            the intersection of practical implementation and technical design.
+          </p>
+          <p>
+            This portfolio highlights a mix of capstone work, robotics, and industrial engineering projects from
+            my co-op experience at IKO. Across these projects, I focused on making designs more buildable,
+            maintainable, and useful in real operating conditions.
+          </p>
+          <p>
+            I am particularly interested in roles involving product development, CAD, prototyping, mechanical
+            design, and project execution.
+          </p>
         </div>
-      </section>
+      </div>
 
-      <section class="section">
-        <div class="section-head">
-          <div class="section-label">About</div>
-          <p>A short introduction instead of a full resume page.</p>
+      <div class="quick-facts">
+        <div class="fact">
+          <strong>Program</strong>
+          <span>Mechanical Engineering, Aerospace Option, UBCO</span>
         </div>
-
-        <div class="two-col">
-          <div class="about-card">
-            <p>
-              My strongest projects are the ones where design decisions actually matter in the real world.
-              I like work that sits between analysis and physical implementation, especially when it involves
-              CAD, prototyping, testing, and iteration.
-            </p>
-            <p>
-              Through co-op and team projects, I’ve built experience moving ideas from rough concepts into
-              practical solutions that can be communicated clearly, built properly, and improved through feedback.
-            </p>
-          </div>
-
-          <div class="about-card">
-            <div class="skills-grid">
-              <span class="pill">SolidWorks</span>
-              <span class="pill">AutoCAD</span>
-              <span class="pill">Inventor</span>
-              <span class="pill">MATLAB</span>
-              <span class="pill">Python</span>
-              <span class="pill">3D Printing</span>
-              <span class="pill">Machining</span>
-              <span class="pill">Prototype Assembly</span>
-            </div>
-          </div>
+        <div class="fact">
+          <strong>Focus Areas</strong>
+          <span>CAD design, prototyping, manufacturing, project execution</span>
         </div>
-      </section>
+        <div class="fact">
+          <strong>Current Work</strong>
+          <span>Capstone VTOL UAV, industrial plant improvement projects, robotics work</span>
+        </div>
+      </div>
 
-      <section class="section">
-        <div class="section-head">
-          <div class="section-label">Selected Experience</div>
-          <p>Condensed so the portfolio still feels project-led.</p>
+      <div class="subtle-box">
+        <h3>Featured sections</h3>
+        <p>
+          Use the navigation above to view project work, the Hermes capstone page, and a brief engineering reflection.
+          Once you upload your skyline, portrait, and project images, the site will take on a much more finished look.
+        </p>
+      </div>
+    </section>
+
+    <section class="page" id="page-about">
+      <h2 class="section-title">About</h2>
+
+      <div class="two-col">
+        <div class="subtle-box">
+          <h3>Profile</h3>
+          <p>
+            My academic and project experience has been shaped by a strong interest in design that works in the real world.
+            I enjoy taking projects from rough concept through design refinement, communication with stakeholders, and
+            practical implementation.
+          </p>
+          <p>
+            During co-op, I worked on plant-wide engineering initiatives that included access improvements, structural changes,
+            dust collection upgrades, and safety improvements. That experience strengthened both my technical communication
+            and my ability to work across design, procurement, and installation.
+          </p>
         </div>
 
-        <div class="experience-list">
-          <div class="experience-card">
-            <h3>Engineering Co-op</h3>
-            <div class="experience-meta">IG Machine &amp; Fibers Ltd</div>
-            <ul>
-              <li>Managed plant-wide engineering projects spanning maintenance, safety, and process improvement.</li>
-              <li>Designed equipment upgrades, drafted schematics, and supported implementation using AutoCAD and Inventor.</li>
-              <li>Created SOPs and technical documentation to support practical, on-floor execution.</li>
-            </ul>
-          </div>
-
-          <div class="experience-card">
-            <h3>Customer-Facing Roles</h3>
-            <div class="experience-meta">Starbucks · Lululemon · Adidas</div>
-            <ul>
-              <li>Built communication, teamwork, adaptability, and consistency in fast-paced environments.</li>
-            </ul>
-          </div>
+        <div class="subtle-box">
+          <h3>Skills and tools</h3>
+          <ul>
+            <li>SolidWorks, AutoCAD, Inventor</li>
+            <li>3D printing, assembly, prototyping</li>
+            <li>Engineering documentation and project coordination</li>
+            <li>MATLAB, Python, technical problem solving</li>
+            <li>Manufacturing support and plant engineering workflows</li>
+          </ul>
         </div>
-      </section>
-    </div>
+      </div>
+
+      <div class="subtle-box">
+        <h3>Experience snapshot</h3>
+        <p>
+          My co-op experience included maintenance, safety, structural, and process-related projects within an industrial
+          manufacturing environment. I regularly worked with vendors, supervisors, consultants, and trades to move projects
+          from problem identification toward a buildable solution.
+        </p>
+      </div>
+
+      <div class="contact-row">
+        <a class="link-btn" href="https://www.linkedin.com/in/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="link-btn" href="mailto:your@email.com">Email</a>
+      </div>
+    </section>
+
+    <section class="page" id="page-portfolio">
+      <h2 class="section-title">Portfolio Projects</h2>
+
+      <div class="portfolio-grid">
+        <div class="project-card">
+          <div class="project-image">UPLOAD PROJECT PHOTO: SS-01 ACCESS IMPROVEMENTS</div>
+          <h3>IKO - Secondary Screen 01 (SS-01) Access Improvements</h3>
+          <p>
+            This project addressed maintenance access limitations on SS-01 by reviewing the existing three-door arrangement
+            and exploring a safer, more usable access solution. Existing access was difficult because one door was on the top
+            deck and another was blocked by the platform in front of the door. Proposed solutions included bi-fold doors and
+            revised platform and stair configurations to improve access for ongoing maintenance work.
+          </p>
+          <div class="meta">Industrial engineering project</div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">UPLOAD PROJECT PHOTO: WELDING SHOP</div>
+          <h3>IKO - Welding Shop</h3>
+          <p>
+            This project focused on redesigning the old welding shop area into a larger and more functional workspace with
+            added storage, improved working space, plugs for welders, and the ability to move equipment inside for maintenance.
+            Work included coordination with structural, electrical, and civil parties, along with follow-up during the concrete
+            and steel structure phases.
+          </p>
+          <div class="meta">Industrial engineering project</div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">UPLOAD PROJECT PHOTO: DUST COLLECTION</div>
+          <h3>IKO - Colour Plant Dust Collection Improvement</h3>
+          <p>
+            This project improved the ducting configuration between the colour and dust collection systems to reduce frequent
+            maintenance issues caused by filter plugging. The work involved revised duct routing, larger duct sizing, damper
+            coordination, insulation planning, and scope changes that improved the overall maintainability of the system.
+          </p>
+          <div class="meta">Industrial engineering project</div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">UPLOAD PROJECT PHOTO: CONVEYOR PLATFORM</div>
+          <h3>IKO - Conveyor Platform Reinforcement</h3>
+          <p>
+            This project addressed an inadequate support condition on the SC-03 conveyor catwalk. Structural review identified
+            that the walkway could not support the required design load, which led to a reinforcement proposal and a new travel
+            path arrangement. Additional modifications were also considered to improve maintenance access to belt scrapers,
+            millwright work areas, and the motor and head-end of the conveyor.
+          </p>
+          <div class="meta">Industrial engineering project</div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">UPLOAD PROJECT PHOTO: WORKING FROM HEIGHT SAFETY</div>
+          <h3>IKO - Plant Wide Working From Height Safety Improvements</h3>
+          <p>
+            This work focused on improving plant-wide safety for tasks performed at height. The project included the addition
+            of new fall arrest and fall restraint anchor points at identified locations around the plant, along with supporting
+            improvements in access equipment such as three new single-person manlifts to improve safe maintenance access.
+          </p>
+          <div class="meta">Industrial engineering project</div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">UPLOAD PROJECT PHOTO: HOLLOW WALL ANALYSIS</div>
+          <h3>IKO - Hollow Wall Analysis</h3>
+          <p>
+            This project investigated the structural integrity of hollow walls in the machine shop and plant areas after concerns
+            were raised during support installation work. The objective was to determine whether the walls were suitable for future
+            attachments or whether an engineering assessment and recommendations would be needed before proceeding with additional work.
+          </p>
+          <div class="meta">Industrial engineering project</div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">UPLOAD PROJECT PHOTO: EMBR ROBOT</div>
+          <h3>EMBR Robot</h3>
+          <p>
+            EMBR was a modular robotics project centered on a fire-retardant marking system. The project involved design integration,
+            team coordination, and practical development work focused on turning a functional concept into a buildable prototype.
+          </p>
+          <div class="meta">Robotics project</div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">UPLOAD PROJECT PHOTO: HERMES VTOL</div>
+          <h3>Hermes VTOL Relay UAV</h3>
+          <p>
+            Hermes is a capstone project exploring a relay UAV intended to support longer-range communication during search and rescue
+            operations. The project focused on a VTOL relay concept that could work alongside an existing drone fleet and help reduce
+            communication loss in remote terrain.
+          </p>
+          <div class="meta">Capstone project</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-capstone">
+      <h2 class="section-title">Capstone Project | Hermes VTOL Relay UAV</h2>
+
+      <div class="capstone-layout">
+        <div class="capstone-summary">
+          <p>
+            Hermes was developed as a quadcopter VTOL fixed-wing relay UAV concept intended to support search and rescue operations
+            in remote or obstructed terrain. Rather than replacing an existing search drone, Hermes was designed as a support platform
+            that could help extend communication and operational range.
+          </p>
+          <p>
+            The project evolved through concept selection, CAD development, prototype assembly, testing, and redesign. Early iterations
+            exposed lift and airflow issues, which led to major changes in the wing extender system and motor placement. Final testing
+            demonstrated stable and reliable quadcopter flight, while fixed-wing transition validation remained limited by rear propulsion
+            issues and timeline constraints.
+          </p>
+        </div>
+
+        <div class="side-image">
+          <div class="frame">UPLOAD BEST HERMES IMAGE HERE</div>
+          <div class="caption">Suggested file: images/hermes-main.jpg</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="list-panel">
+          <h3>Project focus</h3>
+          <ul>
+            <li>Extend communication range in remote search and rescue terrain</li>
+            <li>Support existing UAV operations instead of replacing them</li>
+            <li>Balance deployment flexibility with improved endurance potential</li>
+            <li>Develop a feasible capstone prototype within realistic constraints</li>
+          </ul>
+        </div>
+
+        <div class="list-panel">
+          <h3>Key outcomes</h3>
+          <ul>
+            <li>VTOL deployment concept aligned well with client needs</li>
+            <li>Testing and redesign improved quadcopter stability</li>
+            <li>Relay payload integration concept proved feasible</li>
+            <li>Future work remains in transition validation and propulsion refinement</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="page reflection" id="page-reflection">
+      <h2 class="section-title">Reflection</h2>
+
+      <p>
+        Across both capstone and co-op work, one of the biggest lessons I learned is that good engineering rarely comes from getting
+        everything right the first time. The strongest outcomes usually came from testing, finding what was not working, and then
+        improving the design in a focused way.
+      </p>
+
+      <p>
+        My co-op experience especially showed me that engineering decisions matter most when they can actually be built, maintained,
+        and communicated clearly to the people using them. That made me much more aware of the relationship between technical design,
+        practical constraints, and stakeholder needs.
+      </p>
+
+      <p>
+        Going forward, I want to continue working in environments where I can combine CAD, design thinking, hands-on problem solving,
+        and real implementation. That combination is what I find most meaningful and where I believe I do my best work.
+      </p>
+    </section>
 
     <footer>
-      <div class="container">© 2026 Omindu Etipola · Mechanical Engineering, UBC Okanagan</div>
-    </footer>
-  </div>
-
-  <div id="page-capstone" class="page">
-    <div class="container">
-      <section class="capstone-hero">
-        <div class="capstone-grid">
-          <div>
-            <div class="eyebrow">Capstone Project · 2025–2026</div>
-            <h1 class="capstone-title">Hermes<br>VTOL Relay UAV</h1>
-            <p class="capstone-copy">
-              Hermes was developed as a relay UAV concept intended to support search and rescue operations by
-              extending communication range between the operator and the main drone in remote terrain.
-            </p>
-            <div class="meta-row">
-              <span class="tag accent">Systems Design</span>
-              <span class="tag accent">CAD + Prototyping</span>
-              <span class="tag accent">Testing + Iteration</span>
-            </div>
-          </div>
-
-          <div class="capstone-visual">
-            <div class="visual-pane">
-              <div class="visual-frame">Replace this area with your best Hermes image, render, or prototype photo</div>
-              <div class="visual-caption">
-                Best practice: use your strongest image here first. This should be the first thing someone notices on the project page.
-              </div>
-            </div>
-            <div class="visual-pane">
-              <div class="visual-caption">
-                You can later replace this whole visual block with a real <code>&lt;img&gt;</code> tag once your images are uploaded to an <code>images/</code> folder.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head">
-          <div class="section-label">Project Summary</div>
-          <p>Quick-scan cards so the page feels like a portfolio, not a report.</p>
-        </div>
-
-        <div class="summary-grid">
-          <div class="summary-card">
-            <h4>Problem</h4>
-            <p>Search and rescue teams can lose reliable communication as aircraft move deeper into mountainous or forested terrain.</p>
-          </div>
-          <div class="summary-card">
-            <h4>Solution</h4>
-            <p>A relay UAV concept designed to act as a support platform between the operator and the main drone.</p>
-          </div>
-          <div class="summary-card">
-            <h4>My Role</h4>
-            <p>CAD design, prototyping, assembly support, and design iteration based on testing outcomes.</p>
-          </div>
-          <div class="summary-card">
-            <h4>Tools</h4>
-            <p>SolidWorks, 3D printing, electronics integration, bench testing, and flight-readiness iteration.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head">
-          <div class="section-label">Design Process</div>
-          <p>Use clear steps and visuals to tell the story.</p>
-        </div>
-
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-num">1</div>
-            <div>
-              <h3>Role definition and mission selection</h3>
-              <p>
-                The team initially explored several UAV roles, then focused on relay capability after client feedback
-                made it clear that communication support was the most valuable need.
-              </p>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-num">2</div>
-            <div>
-              <h3>Configuration tradeoff</h3>
-              <p>
-                A fixed-wing aircraft offered endurance, while a quadcopter offered easy deployment. Hermes moved toward
-                a hybrid VTOL approach to combine both strengths.
-              </p>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-num">3</div>
-            <div>
-              <h3>Prototype testing and redesign</h3>
-              <p>
-                Early test iterations exposed lift and airflow issues, which led to a redesign of the wing extender geometry
-                and motor positioning.
-              </p>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-num">4</div>
-            <div>
-              <h3>Final validation and project limits</h3>
-              <p>
-                The redesigned aircraft achieved stable quadcopter flight, but fixed-wing transition validation remained limited
-                by a rear propulsion issue and overall timeline constraints.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head">
-          <div class="section-label">Project Gallery</div>
-          <p>Swap these placeholders for real photos as you upload them.</p>
-        </div>
-
-        <div class="gallery-grid">
-          <div class="gallery-main">
-            <div class="frame">Main project image placeholder<br>Use for final prototype or best render</div>
-            <div class="caption">Suggested file: <code>images/hermes-main.jpg</code></div>
-          </div>
-          <div class="gallery-side">
-            <div class="gallery-side-grid">
-              <div>
-                <div class="frame">CAD screenshot placeholder</div>
-                <div class="caption">Suggested file: <code>images/hermes-cad.jpg</code></div>
-              </div>
-              <div>
-                <div class="frame">Testing photo placeholder</div>
-                <div class="caption">Suggested file: <code>images/hermes-test.jpg</code></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head">
-          <div class="section-label">Results</div>
-          <p>Short cards work better here than long paragraphs.</p>
-        </div>
-
-        <div class="outcome-grid">
-          <div class="outcome-card">
-            <h4>What worked</h4>
-            <p>The redesigned geometry improved flight stability and demonstrated that the relay UAV concept was technically feasible.</p>
-          </div>
-          <div class="outcome-card">
-            <h4>Main issue</h4>
-            <p>A rear propulsion limitation prevented full transition validation within the capstone timeline.</p>
-          </div>
-          <div class="outcome-card">
-            <h4>Value added</h4>
-            <p>The project responded directly to a real client need and showed that a lower-cost support platform could fit existing workflows.</p>
-          </div>
-          <div class="outcome-card">
-            <h4>Next step</h4>
-            <p>Improve the tail propulsion system, continue transition testing, and refine the platform for more robust field operation.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head">
-          <div class="section-label">Key Takeaways</div>
-          <p>These make good closing points for readers and recruiters.</p>
-        </div>
-
-        <div class="takeaways">
-          <div class="takeaway">Iteration mattered more than getting the first design “right.” Each test directly informed the next version of the aircraft.</div>
-          <div class="takeaway">The project balanced performance, portability, cost, and feasibility rather than chasing an unrealistic final product.</div>
-          <div class="takeaway">Client feedback shaped the mission direction early, which made the final concept much more relevant and defensible.</div>
-          <div class="takeaway">Even partial validation was valuable because it clarified exactly where the design succeeded and where future work is still needed.</div>
-        </div>
-      </section>
-    </div>
-
-    <footer>
-      <div class="container">© 2026 Omindu Etipola · Mechanical Engineering, UBC Okanagan</div>
-    </footer>
-  </div>
-
-  <div id="page-reflection" class="page">
-    <div class="container reflection-wrap">
-      <section class="reflection-card">
-        <div class="eyebrow">Engineering Reflection</div>
-        <h1 class="reflection-title">What four years taught me about building things — and myself</h1>
-
-        <div class="pull-quote">
-          I graduate not as someone who has figured everything out, but as someone who has learned how to work through uncertainty and build toward better answers.
-        </div>
-
-        <p>
-          When I started engineering, I thought success mostly meant finding the right answer. Over time, I learned
-          that the better skill is learning how to ask stronger questions, test assumptions, and improve through iteration.
-        </p>
-
-        <p>
-          Capstone made that lesson real. Not everything worked perfectly, but the value came from understanding why,
-          redesigning what we could, and making the next version better. That process gave me more confidence than
-          an easy success would have.
-        </p>
-
-        <p>
-          My co-op experience reinforced something else important: good engineering does not stop at technical quality.
-          A design only matters if it can be communicated clearly, implemented properly, and understood by the people
-          who will actually use it.
-        </p>
-
-        <p>
-          I’m strongest when I can combine hands-on work with structured problem solving. Going forward, that is the kind
-          of engineering environment I want to keep building in.
-        </p>
-      </section>
-    </div>
-
-    <footer>
-      <div class="container">© 2026 Omindu Etipola · Mechanical Engineering, UBC Okanagan</div>
+      © 2026 Omindu Etipola | Mechanical Engineering Portfolio
     </footer>
   </div>
 
   <script>
-    function showPage(id) {
+    function showPage(id){
       document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-      document.querySelectorAll('.nav-links button').forEach(button => button.classList.remove('active'));
+      document.querySelectorAll('.top-nav button').forEach(btn => btn.classList.remove('active'));
       document.getElementById('page-' + id).classList.add('active');
       document.getElementById('tab-' + id).classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
