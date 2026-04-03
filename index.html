@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Omindu Etipola — Mechanical Engineering Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #1D9E75;
+      --accent-light: #E1F5EE;
+      --accent-mid: #0F6E56;
+      --accent-dark: #085041;
+      --text: #1a1a18;
+      --text-muted: #5a5a56;
+      --text-hint: #8a8a84;
+      --border: rgba(0,0,0,0.10);
+      --border-strong: rgba(0,0,0,0.18);
+      --bg: #ffffff;
+      --bg2: #f7f6f2;
+      --bg3: #f0ede6;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+      --radius: 10px;
+      --radius-lg: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 60px;
+    }
+    .nav-logo {
+      font-family: var(--serif); font-size: 20px; color: var(--text);
+      text-decoration: none; letter-spacing: -0.01em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 4px; }
+    .nav-links button {
+      font-family: var(--sans); font-size: 13px; font-weight: 400;
+      padding: 7px 16px; border: none; background: none;
+      color: var(--text-muted); cursor: pointer; border-radius: 6px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-links button:hover { color: var(--text); background: var(--bg2); }
+    .nav-links button.active { color: var(--accent-mid); background: var(--accent-light); font-weight: 500; }
+
+    /* ── PAGE SYSTEM ── */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ── ABOUT PAGE ── */
+    .hero {
+      padding: 5rem 0 4rem;
+      border-bottom: 0.5px solid var(--border);
+      margin-bottom: 3.5rem;
+    }
+    .hero-eyebrow {
+      font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent-mid);
+      margin-bottom: 1rem;
+    }
+    .hero-name {
+      font-family: var(--serif); font-size: clamp(44px, 7vw, 72px);
+      line-height: 1.0; color: var(--text); margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+    .hero-name em { font-style: italic; color: var(--accent); }
+    .hero-bio {
+      font-size: 17px; line-height: 1.8; color: var(--text-muted);
+      max-width: 580px; margin-bottom: 2rem;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      font-size: 12px; font-weight: 500; padding: 5px 13px;
+      background: var(--bg2); color: var(--text-muted);
+      border: 0.5px solid var(--border-strong); border-radius: 999px;
+    }
+    .tag.accent { background: var(--accent-light); color: var(--accent-mid); border-color: transparent; }
+
+    .section { margin-bottom: 3.5rem; }
+    .section-label {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-hint);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+    h2 { font-family: var(--serif); font-size: 28px; color: var(--text); margin-bottom: 1rem; }
+    p { color: var(--text-muted); line-height: 1.75; margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill {
+      font-size: 13px; padding: 6px 14px;
+      background: var(--accent-light); color: var(--accent-mid);
+      border-radius: 999px; font-weight: 500;
+    }
+
+    .exp-card {
+      background: var(--bg2); border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .exp-role { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+    .exp-org { font-size: 13px; color: var(--text-hint); margin-bottom: 1rem; }
+    .exp-list { list-style: none; }
+    .exp-list li {
+      font-size: 14px; color: var(--text-muted); padding: 5px 0;
+      display: flex; gap: 10px; line-height: 1.65;
+    }
+    .exp-list li::before { content: "→"; color: var(--accent); flex-shrink: 0; }
+
+    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .project-mini {
+      background: var(--bg2); border: 0.5px solid var(--border);
+      border-radius: var(--radius); padding: 1rem 1.25rem;
+      cursor: pointer; transition: border-color 0.15s, background 0.15s;
+    }
+    .project-mini:hover { border-color: var(--accent); background: var(--accent-light); }
+    .project-mini-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+    .project-mini-sub { font-size: 12px; color: var(--text-hint); }
+
+    .cta-row {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      padding-top: 2.5rem; border-top: 0.5px solid var(--border);
+      margin-top: 1rem;
+    }
+    .btn {
+      font-family: var(--sans); font-size: 13px; font-weight: 500;
+      padding: 11px 24px; border-radius: var(--radius);
+      border: 0.5px solid var(--border-strong);
+      cursor: pointer; background: none; color: var(--text);
+      text-decoration: none; display: inline-flex; align-items: center;
+      transition: background 0.15s;
+    }
+    .btn:hover { background: var(--bg2); }
+    .btn.primary { background: var(--accent); color: white; border-color: transparent; }
+    .btn.primary:hover { background: var(--accent-mid); }
+
+    /* ── CAPSTONE PAGE ── */
+    .capstone-hero {
+      padding: 4rem 0 2.5rem;
+      border-bottom: 0.5px solid var(--border);
+      margin-bottom: 3rem;
+    }
+    .capstone-kicker {
+      font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent-mid); margin-bottom: 1rem;
+    }
+    .capstone-title {
+      font-family: var(--serif); font-size: clamp(32px, 5vw, 52px);
+      color: var(--text); line-height: 1.1; margin-bottom: 1.25rem;
+    }
+    .capstone-meta {
+      display: flex; gap: 20px; flex-wrap: wrap;
+      font-size: 13px; color: var(--text-hint);
+    }
+
+    .img-ph {
+      border: 1.5px dashed var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 1.5rem;
+      text-align: center; background: var(--bg2);
+      margin: 1.5rem 0;
+    }
+    .img-ph-type {
+      font-size: 11px; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--accent-mid); margin-bottom: 6px;
+    }
+    .img-ph-label { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
+    .img-ph-caption { font-size: 12px; color: var(--text-hint); line-height: 1.6; max-width: 420px; margin: 0 auto; }
+
+    .step-item { display: flex; gap: 1.25rem; margin-bottom: 2rem; align-items: flex-start; }
+    .step-badge {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--accent); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 500; flex-shrink: 0; margin-top: 3px;
+    }
+    .step-body h4 { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 5px; }
+    .step-body p { font-size: 14px; margin: 0; }
+
+    .outcome-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 1rem; }
+    .outcome-card {
+      background: var(--bg2); border: 0.5px solid var(--border);
+      border-radius: var(--radius); padding: 1.25rem;
+    }
+    .outcome-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-hint); margin-bottom: 8px; }
+    .outcome-val { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+    .takeaway-list { list-style: none; }
+    .takeaway-list li {
+      font-size: 14px; color: var(--text-muted); padding: 10px 0;
+      border-bottom: 0.5px solid var(--border);
+      display: flex; gap: 12px; line-height: 1.65;
+    }
+    .takeaway-list li:last-child { border-bottom: none; }
+    .takeaway-list li::before { content: "◆"; color: var(--accent); font-size: 8px; flex-shrink: 0; margin-top: 6px; }
+
+    .divider { border: none; border-top: 0.5px solid var(--border); margin: 2.5rem 0; }
+
+    /* ── REFLECTION PAGE ── */
+    .reflection-hero {
+      padding: 4rem 0 2.5rem;
+      border-bottom: 0.5px solid var(--border);
+      margin-bottom: 3rem;
+    }
+    .reflection-body { max-width: 640px; }
+    .reflection-body p { font-size: 17px; line-height: 1.85; color: var(--text-muted); }
+    .word-badge {
+      display: inline-block; margin-top: 2rem;
+      font-size: 12px; font-weight: 500; color: var(--accent-mid);
+      background: var(--accent-light); padding: 5px 14px; border-radius: 999px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 0.5px solid var(--border);
+      margin-top: 5rem; padding: 2rem 0;
+      text-align: center; font-size: 13px; color: var(--text-hint);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .container { padding: 0 1.25rem; }
+      nav { padding: 0 1.25rem; }
+      .nav-links button { padding: 7px 10px; font-size: 12px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .outcome-grid { grid-template-columns: 1fr; }
+      .hero-name { font-size: 40px; }
+      .capstone-title { font-size: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVIGATION ── -->
+  <nav>
+    <a class="nav-logo" href="#" onclick="showPage('about')">Omindu <span>Etipola</span></a>
+    <div class="nav-links">
+      <button onclick="showPage('about')" id="tab-about" class="active">About</button>
+      <button onclick="showPage('capstone')" id="tab-capstone">Capstone</button>
+      <button onclick="showPage('reflection')" id="tab-reflection">Reflection</button>
+    </div>
+  </nav>
+
+  <!-- ════════════════════════════════════════
+       PAGE 1 — ABOUT ME
+  ════════════════════════════════════════ -->
+  <div id="page-about" class="page active">
+    <div class="container">
+
+      <div class="hero">
+        <div class="hero-eyebrow">Mechanical Engineering · Aerospace Option · UBCO · April 2026</div>
+        <div class="hero-name">Omindu<br><em>Etipola</em></div>
+        <p class="hero-bio">I'm a graduating mechanical engineering student with a focus on aerospace systems, hands-on manufacturing, and real-world design problem solving. I bring a rare combination of technical depth and people-facing experience — from plant-floor engineering co-ops to fast-paced retail environments — and I'm driven by building things that actually work.</p>
+        <div class="hero-tags">
+          <span class="tag accent">Aerospace Systems</span>
+          <span class="tag accent">CAD & Design</span>
+          <span class="tag accent">Prototyping</span>
+          <span class="tag">UBCO Class of 2026</span>
+          <span class="tag">Open to Work</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Technical Skills</div>
+        <div class="skills-grid">
+          <span class="pill">SolidWorks</span>
+          <span class="pill">AutoCAD</span>
+          <span class="pill">Inventor</span>
+          <span class="pill">3D Design</span>
+          <span class="pill">Python</span>
+          <span class="pill">MATLAB</span>
+          <span class="pill">C++</span>
+          <span class="pill">Machining</span>
+          <span class="pill">Metal Finishing</span>
+          <span class="pill">3D Printing</span>
+          <span class="pill">Adobe Premiere Pro</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Experience</div>
+        <div class="exp-card">
+          <div class="exp-role">Engineering Co-op</div>
+          <div class="exp-org">IG Machine &amp; Fibers Ltd</div>
+          <ul class="exp-list">
+            <li>Managed plant-wide engineering projects spanning maintenance, safety, and process improvement</li>
+            <li>Designed and implemented equipment upgrades across production lines</li>
+            <li>Created SOPs and technical documentation for operational continuity</li>
+            <li>Drafted designs and schematics using AutoCAD and Inventor</li>
+          </ul>
+        </div>
+        <div class="exp-card">
+          <div class="exp-role">Customer Experience Roles</div>
+          <div class="exp-org">Starbucks · Lululemon · Adidas</div>
+          <ul class="exp-list">
+            <li>Developed communication, teamwork, and adaptability in fast-paced environments</li>
+            <li>Built habits of consistency, attention to detail, and client-centred thinking</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Projects</div>
+        <div class="projects-grid">
+          <div class="project-mini" onclick="showPage('capstone')">
+            <div class="project-mini-title">Search &amp; Rescue Signal Relay ↗</div>
+            <div class="project-mini-sub">Capstone · LOS communication system</div>
+          </div>
+          <div class="project-mini">
+            <div class="project-mini-title">EMBR Robot</div>
+            <div class="project-mini-sub">Modular fire-retardant marking system</div>
+          </div>
+          <div class="project-mini">
+            <div class="project-mini-title">C-Clamp Manufacturing</div>
+            <div class="project-mini-sub">Machined aluminum clamp from scratch</div>
+          </div>
+          <div class="project-mini">
+            <div class="project-mini-title">Pi Car</div>
+            <div class="project-mini-sub">Autonomous line-following robot · Raspberry Pi + Python</div>
+          </div>
+          <div class="project-mini">
+            <div class="project-mini-title">Research Vessel Design</div>
+            <div class="project-mini-sub">CAD modelling + animation</div>
+          </div>
+          <div class="project-mini">
+            <div class="project-mini-title">Sustainable Clothing Startup</div>
+            <div class="project-mini-sub">Adaptive clothing · textile waste reduction</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Interests</div>
+        <p>I'm drawn to engineering problems that sit at the intersection of design and function — where decisions in CAD have real consequences in the field. Outside of technical work, I value creativity, curiosity, and collaboration. I enjoy working through ambiguous problems with a team, and I'm energized by projects that require both analytical thinking and practical making.</p>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn primary" href="https://www.linkedin.com/in/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+        <a class="btn" href="mailto:your@email.com">Send an Email</a>
+      </div>
+
+    </div>
+    <footer><div class="container">© 2026 Omindu Etipola · Mechanical Engineering, UBCO</div></footer>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       PAGE 2 — CAPSTONE PROJECT
+  ════════════════════════════════════════ -->
+  <div id="page-capstone" class="page">
+    <div class="container">
+
+      <div class="capstone-hero">
+        <div class="capstone-kicker">Capstone Project · 2025–2026 · University of British Columbia Okanagan</div>
+        <div class="capstone-title">Search &amp; Rescue<br>Signal Relay System</div>
+        <div class="capstone-meta">
+          <span>Communications Engineering</span>
+          <span>·</span>
+          <span>Iterative Prototyping</span>
+          <span>·</span>
+          <span>Systems Design</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Project Overview</h2>
+        <p>This capstone project tackled a real communication gap in search and rescue (SAR) operations: when rescuers and ground teams lose line-of-sight (LOS), radio signals degrade and coordination breaks down. Our team designed and prototyped a low-cost, deployable signal relay system intended to maintain communication across terrain obstacles — with a particular focus on iterative hardware development under real-world constraints.</p>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="section">
+        <h2>The Problem</h2>
+        <p>In remote terrain — mountain ridges, dense forests, canyon systems — search and rescue teams frequently lose radio contact with base camp as soon as someone crests a hill or enters a valley. This isn't just inconvenient: it's a safety failure. Existing solutions are either too expensive for community SAR teams, too bulky to deploy on foot, or require infrastructure that simply doesn't exist in the wilderness.</p>
+        <p>Our goal was to prototype something different: a lightweight, deployable relay node that could be carried in a pack, positioned in the field, and re-establish LOS-based communication between two parties who can no longer see each other.</p>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="section">
+        <h2>Engineering Approach</h2>
+        <p>We based our system architecture on LOS radio propagation principles. Rather than overcoming terrain with signal power, we chose to physically reposition relay nodes at LOS-clear vantage points — a simpler, more reliable approach for low-budget hardware. The system included a transmitter unit, at least one relay node, and a receiver, with the relay node designed to be quick-deploy and battery-powered.</p>
+        <div class="img-ph">
+          <div class="img-ph-type">Image Placeholder</div>
+          <div class="img-ph-label">[INSERT IMAGE: System Architecture Diagram]</div>
+          <div class="img-ph-caption">Block diagram showing transmitter → relay node → receiver communication chain and the LOS constraint logic</div>
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="section">
+        <h2>Iterative Design Process</h2>
+
+        <div class="step-item">
+          <div class="step-badge">1</div>
+          <div class="step-body">
+            <h4>Initial Concept &amp; Benchmarking</h4>
+            <p>We surveyed existing SAR relay solutions and established baseline specs: weight under 2 kg per node, battery life of 4+ hours, and assembly time under 5 minutes. Early sketches explored three form factors: a tripod-mounted unit, a pack-attached module, and a ground-stake design.</p>
+          </div>
+        </div>
+
+        <div class="img-ph">
+          <div class="img-ph-type">Image Placeholder</div>
+          <div class="img-ph-label">[INSERT IMAGE: Early Concept Sketches]</div>
+          <div class="img-ph-caption">Initial hand-drawn concepts showing the three competing form factor directions explored in week 3</div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-badge">2</div>
+          <div class="step-body">
+            <h4>First Prototype — Hardware Integration</h4>
+            <p>We assembled a first functional prototype using off-the-shelf radio modules and a custom 3D-printed enclosure. The first outdoor test revealed a key issue: the enclosure's geometry blocked the antenna's radiation pattern, causing significant signal loss in the relay direction we needed most.</p>
+          </div>
+        </div>
+
+        <div class="img-ph">
+          <div class="img-ph-type">Image Placeholder</div>
+          <div class="img-ph-label">[INSERT IMAGE: First Prototype Build]</div>
+          <div class="img-ph-caption">First assembled prototype showing the 3D-printed housing, radio modules, and battery pack configuration before antenna testing</div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-badge">3</div>
+          <div class="step-body">
+            <h4>Redesign — Antenna Geometry &amp; Mounting</h4>
+            <p>We restructured the enclosure to expose the antenna externally and added an adjustable tilting mount so the relay node could be aimed precisely. A second round of field tests showed measurable improvement in signal clarity at 150 m.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-badge">4</div>
+          <div class="step-body">
+            <h4>Power &amp; Weatherproofing Challenges</h4>
+            <p>Field testing also revealed that temperature drops reduced battery output more than expected — we had underestimated the power draw of the radio modules in cold conditions. We adjusted the power supply design and added a basic weather seal, though full weatherproofing remained out of scope within our timeline.</p>
+          </div>
+        </div>
+
+        <div class="img-ph">
+          <div class="img-ph-type">Graph Placeholder</div>
+          <div class="img-ph-label">[INSERT GRAPH: Signal Strength vs. Distance]</div>
+          <div class="img-ph-caption">Measured received signal strength (dBm) at 25 m, 75 m, and 150 m intervals across prototypes V1 and V2 — showing improvement after antenna redesign</div>
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="section">
+        <h2>Final Outcome &amp; Limitations</h2>
+        <div class="outcome-grid">
+          <div class="outcome-card">
+            <div class="outcome-label">What worked</div>
+            <div class="outcome-val">Two-way signal relay achieved at 150 m with LOS vantage positioning. Deployment time met target. Modular enclosure design was functional and field-serviceable.</div>
+          </div>
+          <div class="outcome-card">
+            <div class="outcome-label">What didn't</div>
+            <div class="outcome-val">Weatherproofing incomplete. Battery life fell short of the 4-hour target in cold conditions. Non-LOS terrain testing was not fully validated.</div>
+          </div>
+          <div class="outcome-card">
+            <div class="outcome-label">Honest assessment</div>
+            <div class="outcome-val">Prototype proved the core concept but is not field-ready. Real deployment would require further hardware iteration and environmental testing.</div>
+          </div>
+          <div class="outcome-card">
+            <div class="outcome-label">What comes next</div>
+            <div class="outcome-val">Improved power regulation, ruggedized housing, and extended range testing with directional antennas.</div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="section">
+        <h2>Key Takeaways</h2>
+        <ul class="takeaway-list">
+          <li>Prototyping reveals things that models can't — field testing was always more informative than simulation</li>
+          <li>Constraints are design inputs, not obstacles; working within budget and weight limits shaped better decisions</li>
+          <li>Partial success is still engineering progress — knowing what didn't work and why is rigorous, not a failure</li>
+          <li>Communication between team members was as critical as the communication system we were building</li>
+          <li>Every iteration taught something specific; vague testing produces vague learning</li>
+        </ul>
+      </div>
+
+    </div>
+    <footer><div class="container">© 2026 Omindu Etipola · Mechanical Engineering, UBCO</div></footer>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       PAGE 3 — REFLECTION
+  ════════════════════════════════════════ -->
+  <div id="page-reflection" class="page">
+    <div class="container">
+
+      <div class="reflection-hero">
+        <div class="capstone-kicker">Engineering Reflection · Personal Essay</div>
+        <div class="capstone-title">What four years taught me<br>about building things — and myself</div>
+      </div>
+
+      <div class="reflection-body">
+        <p>When I started this degree, I thought engineering was mostly about finding the right answer. Four years later, I understand it's really about asking better questions — and being willing to sit with uncertainty long enough to learn something useful from it.</p>
+
+        <p>The capstone project made that concrete in a way no course ever did. Our signal relay system didn't fully succeed — battery life fell short, weatherproofing never reached where it needed to be, and some of the terrain tests exposed gaps in our assumptions. But the process of working through those failures, iterating on the design, and understanding exactly why something didn't work? That felt like real engineering. I left that project more confident in my abilities than if everything had gone smoothly. Struggle, it turns out, is where the learning lives.</p>
+
+        <p>My co-op at IG Machine &amp; Fibers reinforced a different but equally important lesson: engineering happens inside organizations, not just on drawing boards. I managed projects across maintenance, safety, and process improvement — and quickly realized that the most technically sound solution means nothing if you can't communicate it clearly to the people operating the equipment every day. Writing SOPs, running team briefings, documenting design decisions — those skills aren't soft. They're how engineering actually gets implemented.</p>
+
+        <p>I've also come to see engineers as translators between technical possibility and human need. We don't build for buildings — we build for the people who use them, maintain them, and depend on them. That responsibility matters to me.</p>
+
+        <p>In terms of growth: I'm strongest when I can get my hands on something physical, iterate quickly, and work in a team with a clear shared problem. I'm still developing my comfort with open-ended, poorly-defined challenges — but I've learned that sitting with ambiguity is a skill, and one I've been actively building since first year.</p>
+
+        <p>I graduate not as someone who has figured it out, but as someone who finally knows how to figure things out. That distinction feels like the whole point.</p>
+
+        <span class="word-badge">~310 words · First person reflection</span>
+      </div>
+
+    </div>
+    <footer><div class="container">© 2026 Omindu Etipola · Mechanical Engineering, UBCO</div></footer>
+  </div>
+
+  <script>
+    function showPage(id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+      document.getElementById('page-' + id).classList.add('active');
+      document.getElementById('tab-' + id).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
