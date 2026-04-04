@@ -20,23 +20,59 @@
 
     *{box-sizing:border-box;}
     html{scroll-behavior:smooth;}
+
     body{
       margin:0;
       font-family:Arial, Helvetica, sans-serif;
       color:var(--text);
       background:#d7e7f1;
+      position:relative;
+    }
+
+    body::before,
+    body::after{
+      content:"";
+      position:fixed;
+      top:0;
+      bottom:0;
+      width:max(120px, calc((100vw - 1240px) / 2));
+      z-index:0;
+      pointer-events:none;
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      opacity:0.24;
+      filter:grayscale(18%);
+    }
+
+    body::before{
+      left:0;
+      background-image:
+        linear-gradient(rgba(215,231,241,0.70), rgba(215,231,241,0.70)),
+        url("images/hermes.jpg");
+      background-position:center;
+    }
+
+    body::after{
+      right:0;
+      background-image:
+        linear-gradient(rgba(215,231,241,0.72), rgba(215,231,241,0.72)),
+        url("images/conveyor.jpg");
+      background-position:center;
     }
 
     .page-shell{
-      max-width:1100px;
+      max-width:1240px;
       margin:0 auto;
       background:#fff;
       min-height:100vh;
       box-shadow:0 0 0 1px rgba(0,0,0,0.06);
+      position:relative;
+      z-index:1;
     }
 
     .banner{
-      height:155px;
+      height:185px;
       position:relative;
       overflow:hidden;
       background:
@@ -49,10 +85,10 @@
 
     .site-title{
       text-align:center;
-      font-size:52px;
+      font-size:48px;
       font-weight:700;
       letter-spacing:-1px;
-      margin:18px 0 12px;
+      margin:14px 0 10px;
       color:#222;
     }
 
@@ -80,8 +116,13 @@
       color:var(--blue-dark);
     }
 
-    .page{display:none; padding:28px 42px 40px;}
+    .page{display:none; padding:28px 48px 42px;}
     .page.active{display:block;}
+
+    .content-wrap{
+      max-width:1040px;
+      margin:0 auto;
+    }
 
     h2.section-title{
       font-size:19px;
@@ -93,21 +134,21 @@
     .intro-grid{
       display:grid;
       grid-template-columns:260px 1fr;
-      gap:26px;
+      gap:24px;
       align-items:start;
-      margin-bottom:34px;
+      margin-bottom:28px;
     }
 
     .portrait-box{
       border:1px solid var(--line);
       background:#f7f7f7;
-      padding:14px;
+      padding:12px;
       text-align:center;
     }
 
     .portrait-placeholder{
       width:100%;
-      height:360px;
+      height:350px;
       object-fit:cover;
       object-position:center 18%;
       border:1px solid #cfcfcf;
@@ -118,9 +159,9 @@
     .caption{ display:none; }
 
     .bio-panel{
-      border:4px solid #222;
+      border:3px solid #222;
       padding:22px 24px;
-      min-height:290px;
+      min-height:300px;
       display:flex;
       flex-direction:column;
       justify-content:center;
@@ -128,7 +169,7 @@
     }
 
     .bio-panel p{
-      line-height:1.78;
+      line-height:1.74;
       margin:0 0 16px;
       font-size:15px;
     }
@@ -137,13 +178,13 @@
       display:grid;
       grid-template-columns:repeat(3, 1fr);
       gap:14px;
-      margin:8px 0 28px;
+      margin:6px 0 24px;
     }
 
     .fact{
       border:1px solid var(--line);
       background:#f8f9fa;
-      padding:14px;
+      padding:15px;
     }
 
     .fact strong{
@@ -188,13 +229,13 @@
     .portfolio-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
-      gap:18px;
+      gap:20px;
     }
 
     .project-card{
       border:1px solid var(--line);
       background:#fff;
-      padding:16px 18px 18px;
+      padding:18px 20px 20px;
       display:flex;
       flex-direction:column;
     }
@@ -212,32 +253,26 @@
     }
 
     #page-portfolio .project-card:nth-child(1) .project-image{
-      height:260px;
-      width:100%;
+      height:270px;
       object-fit:cover;
       object-position:center center;
       padding:0;
       background:#dde5ea;
-      display:block;
-      margin:0 auto 14px;
     }
 
     #page-portfolio .project-card:nth-child(2) .project-image{
-      height:260px;
-      width:100%;
+      height:270px;
       object-fit:contain;
       object-position:center center;
       padding:14px;
       background:#eef2f5;
-      display:block;
-      margin:0 auto 14px;
     }
 
     #page-portfolio .project-card:nth-child(3) .project-image,
     #page-portfolio .project-card:nth-child(4) .project-image,
     #page-portfolio .project-card:nth-child(5) .project-image,
     #page-portfolio .project-card:nth-child(6) .project-image{
-      height:210px;
+      height:220px;
     }
 
     .project-card h3{
@@ -264,10 +299,10 @@
 
     .capstone-layout{
       display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:24px;
+      grid-template-columns:1.1fr .9fr;
+      gap:22px;
       align-items:start;
-      margin-bottom:28px;
+      margin-bottom:26px;
     }
 
     .capstone-summary p{
@@ -340,13 +375,18 @@
 
     footer{
       border-top:1px solid var(--line);
-      padding:18px 42px 28px;
+      padding:18px 48px 28px;
       color:#6d777d;
       font-size:12px;
       text-align:center;
     }
 
     @media (max-width: 900px){
+      body::before,
+      body::after{
+        display:none;
+      }
+
       .intro-grid,
       .capstone-layout,
       .two-col,
@@ -359,6 +399,10 @@
         padding:24px 20px 34px;
       }
 
+      .content-wrap{
+        max-width:none;
+      }
+
       footer{
         padding:18px 20px 28px;
       }
@@ -367,8 +411,17 @@
         font-size:40px;
       }
 
+      .banner{
+        height:170px;
+      }
+
       .portrait-placeholder{
         height:320px;
+      }
+
+      #page-portfolio .project-card:nth-child(1) .project-image,
+      #page-portfolio .project-card:nth-child(2) .project-image{
+        height:240px;
       }
     }
   </style>
@@ -387,298 +440,306 @@
     </div>
 
     <section class="page active" id="page-home">
-      <div class="intro-grid">
-        <div class="portrait-box">
-          <img class="portrait-placeholder" src="images/portrait.jpg" alt="Portrait of Omindu Etipola">
+      <div class="content-wrap">
+        <div class="intro-grid">
+          <div class="portrait-box">
+            <img class="portrait-placeholder" src="images/portrait.jpg" alt="Portrait of Omindu Etipola">
+          </div>
+
+          <div class="bio-panel">
+            <p>
+              I am a fourth-year Mechanical Engineering student in the Aerospace Option at UBC Okanagan with experience 
+              in CAD design, manufacturing, plant engineering, and applied project development. My strongest work lies at 
+              the intersection of technical design and practical implementation, where engineering decisions must be not 
+              only effective on paper, but also buildable, maintainable, and useful in real operating conditions.
+            </p>
+            <p>
+              This portfolio highlights a combination of capstone, robotics, and industrial engineering projects that reflect 
+              both my academic background and co-op experience at IKO. Through these projects, I have worked on challenges involving 
+              mechanical design, safety improvements, structural modifications, system integration, and prototype development, while 
+              strengthening my ability to communicate and collaborate in real engineering environments.
+            </p>
+            <p>
+              I am particularly interested in opportunities involving product development, mechanical design, CAD, prototyping, and 
+              project execution, where I can continue applying hands-on problem solving to meaningful engineering work.
+            </p>
+          </div>
         </div>
 
-        <div class="bio-panel">
-          <p>
-            I am a fourth-year Mechanical Engineering student in the Aerospace Option at UBC Okanagan with experience 
-            in CAD design, manufacturing, plant engineering, and applied project development. My strongest work lies at 
-            the intersection of technical design and practical implementation, where engineering decisions must be not 
-            only effective on paper, but also buildable, maintainable, and useful in real operating conditions.
-          </p>
-          <p>
-            This portfolio highlights a combination of capstone, robotics, and industrial engineering projects that reflect 
-            both my academic background and co-op experience at IKO. Through these projects, I have worked on challenges involving 
-            mechanical design, safety improvements, structural modifications, system integration, and prototype development, while 
-            strengthening my ability to communicate and collaborate in real engineering environments.
-          </p>
-          <p>
-            I am particularly interested in opportunities involving product development, mechanical design, CAD, prototyping, and 
-            project execution, where I can continue applying hands-on problem solving to meaningful engineering work.
-          </p>
+        <div class="quick-facts">
+          <div class="fact">
+            <strong>Program</strong>
+            <span>Mechanical Engineering, Aerospace Option, UBCO</span>
+          </div>
+          <div class="fact">
+            <strong>Focus Areas</strong>
+            <span>CAD design, prototyping, manufacturing, project planning and execution</span>
+          </div>
+          <div class="fact">
+            <strong>Project History</strong>
+            <span>Capstone VTOL UAV, industrial plant improvement projects, robotics work</span>
+          </div>
         </div>
-      </div>
 
-      <div class="quick-facts">
-        <div class="fact">
-          <strong>Program</strong>
-          <span>Mechanical Engineering, Aerospace Option, UBCO</span>
+        <div class="subtle-box">
+          <h3>Featured sections</h3>
+          <p>Use the navigation above to view project work, the Hermes capstone page, and a brief engineering reflection.</p>
         </div>
-        <div class="fact">
-          <strong>Focus Areas</strong>
-          <span>CAD design, prototyping, manufacturing, project planning and execution</span>
-        </div>
-        <div class="fact">
-          <strong>Project History</strong>
-          <span>Capstone VTOL UAV, industrial plant improvement projects, robotics work</span>
-        </div>
-      </div>
-
-      <div class="subtle-box">
-        <h3>Featured sections</h3>
-        <p>
-          Use the navigation above for additional information on project work, the Hermes capstone project, and reflection.
-        </p>
       </div>
     </section>
 
     <section class="page" id="page-about">
-      <h2 class="section-title">About</h2>
+      <div class="content-wrap">
+        <h2 class="section-title">About</h2>
 
-      <div class="two-col">
-        <div class="subtle-box">
-          <h3>Profile</h3>
-          <p>
-            My academic and project experience has been shaped by a strong interest in design that works in the real world.
-            I enjoy taking projects from rough concept through design refinement, communication with stakeholders, and
-            practical implementation.
-          </p>
-          <p>
-            During co-op, I worked on plant-wide engineering initiatives that included access improvements, structural changes,
-            dust collection upgrades, and safety improvements. That experience strengthened both my technical communication
-            and my ability to work across design, procurement, and installation.
-          </p>
+        <div class="two-col">
+          <div class="subtle-box">
+            <h3>Profile</h3>
+            <p>
+              My academic and project experience has been shaped by a strong interest in design that works in the real world.
+              I enjoy taking projects from rough concept through design refinement, communication with stakeholders, and
+              practical implementation.
+            </p>
+            <p>
+              During co-op, I worked on plant-wide engineering initiatives that included access improvements, structural changes,
+              dust collection upgrades, and safety improvements. That experience strengthened both my technical communication
+              and my ability to work across design, procurement, and installation.
+            </p>
+          </div>
+
+          <div class="subtle-box">
+            <h3>Skills and tools</h3>
+            <ul>
+              <li>SolidWorks, AutoCAD, Inventor</li>
+              <li>3D printing, assembly, prototyping</li>
+              <li>Engineering documentation and project coordination</li>
+              <li>MATLAB, Python, technical problem solving</li>
+              <li>Manufacturing support and plant engineering workflows</li>
+            </ul>
+          </div>
         </div>
 
         <div class="subtle-box">
-          <h3>Skills and tools</h3>
-          <ul>
-            <li>SolidWorks, AutoCAD, Inventor</li>
-            <li>3D printing, assembly, prototyping</li>
-            <li>Engineering documentation and project coordination</li>
-            <li>MATLAB, Python, technical problem solving</li>
-            <li>Manufacturing support and plant engineering workflows</li>
-          </ul>
+          <h3>Experience snapshot</h3>
+          <p>
+            My co-op experience included maintenance, safety, structural, and process-related projects within an industrial
+            manufacturing environment. I regularly worked with vendors, supervisors, consultants, and trades to move projects
+            from problem identification toward a buildable solution.
+          </p>
         </div>
-      </div>
 
-      <div class="subtle-box">
-        <h3>Experience snapshot</h3>
-        <p>
-          My co-op experience included maintenance, safety, structural, and process-related projects within an industrial
-          manufacturing environment. I regularly worked with vendors, supervisors, consultants, and trades to move projects
-          from problem identification toward a buildable solution.
-        </p>
-      </div>
-
-      <div class="contact-row">
-        <a class="link-btn" href="https://www.linkedin.com/in/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="link-btn" href="mailto:omindu.a.e@hotmail.com">Email</a>
+        <div class="contact-row">
+          <a class="link-btn" href="https://www.linkedin.com/in/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="link-btn" href="mailto:omindu.a.e@hotmail.com">Email</a>
+        </div>
       </div>
     </section>
 
     <section class="page" id="page-portfolio">
-      <h2 class="section-title">Portfolio Projects</h2>
+      <div class="content-wrap">
+        <h2 class="section-title">Portfolio Projects</h2>
 
-      <div class="portfolio-grid">
-        <div class="project-card">
-          <img class="project-image" src="images/hermes.jpg" alt="Hermes VTOL Relay UAV project image">
-          <h3>Hermes VTOL Relay UAV</h3>
-          <p>
-            Hermes was a capstone project centered on the design of a VTOL relay UAV intended to support search and rescue operations 
-            in remote terrain. Rather than replacing an existing search drone, the concept was developed as a support platform to extend 
-            communication range between the operator and the primary UAV. The project involved concept selection, CAD development, 
-            prototyping, testing, and iterative redesign, with a strong focus on feasibility, deployability, and real-world operational 
-            value.
-          </p>
-          <div class="meta">Capstone</div>
-        </div>
+        <div class="portfolio-grid">
+          <div class="project-card">
+            <img class="project-image" src="images/hermes.jpg" alt="Hermes VTOL Relay UAV project image">
+            <h3>Hermes VTOL Relay UAV</h3>
+            <p>
+              Hermes was a capstone project centered on the design of a VTOL relay UAV intended to support search and rescue operations 
+              in remote terrain. Rather than replacing an existing search drone, the concept was developed as a support platform to extend 
+              communication range between the operator and the primary UAV. The project involved concept selection, CAD development, 
+              prototyping, testing, and iterative redesign, with a strong focus on feasibility, deployability, and real-world operational 
+              value.
+            </p>
+            <div class="meta">Capstone</div>
+          </div>
 
-        <div class="project-card">
-          <img class="project-image" src="images/embr.jpg" alt="EMBR robot project image">
-          <h3>EMBR Robot</h3>
-          <p>
-            EMBR was a modular robotics project developed for wildfire-related applications, with a focus on detecting and assessing 
-            underground ember conditions. My primary responsibility was designing the full rear back plate assembly, including the 
-            rotating and actuating metal probe used to measure ember temperature beneath the ground surface. This work involved 
-            developing a mechanical system that could support probe motion, integrate with the broader robot structure, and remain 
-            realistic to manufacture and assemble. The project gave me hands-on experience in mechanism design, integration, and 
-            translating a functional requirement into a practical engineered component.
-          </p>
-          <div class="meta">Heat Robotics - UBCO</div>
-        </div>
+          <div class="project-card">
+            <img class="project-image" src="images/embr.jpg" alt="EMBR robot project image">
+            <h3>EMBR Robot</h3>
+            <p>
+              EMBR was a modular robotics project developed for wildfire-related applications, with a focus on detecting and assessing 
+              underground ember conditions. My primary responsibility was designing the full rear back plate assembly, including the 
+              rotating and actuating metal probe used to measure ember temperature beneath the ground surface. This work involved 
+              developing a mechanical system that could support probe motion, integrate with the broader robot structure, and remain 
+              realistic to manufacture and assemble. The project gave me hands-on experience in mechanism design, integration, and 
+              translating a functional requirement into a practical engineered component.
+            </p>
+            <div class="meta">Heat Robotics - UBCO</div>
+          </div>
 
-        <div class="project-card">
-          <img class="project-image" src="images/ss01.jpg" alt="SS-01 access improvements project image">
-          <h3>Screen Deck Safety Access Improvements</h3>
-          <p>
-            This project focused on improving maintenance access to Secondary Screen 01 (SS-01), where the existing door 
-            arrangement created significant usability and safety limitations. Two of the three existing access doors were poorly 
-            located, with one requiring ladder access on the top deck and another blocked by an adjacent platform. Working with 
-            internal stakeholders and external vendors, the project explored revised access solutions including bi-fold doors, 
-            stair relocation, and platform modifications to create a safer and more practical configuration for ongoing maintenance 
-            activities.
-          </p>
-          <div class="meta">IKO - Co-op</div>
-        </div>
+          <div class="project-card">
+            <img class="project-image" src="images/ss01.jpg" alt="SS-01 access improvements project image">
+            <h3>Screen Deck Safety Access Improvements</h3>
+            <p>
+              This project focused on improving maintenance access to Secondary Screen 01 (SS-01), where the existing door 
+              arrangement created significant usability and safety limitations. Two of the three existing access doors were poorly 
+              located, with one requiring ladder access on the top deck and another blocked by an adjacent platform. Working with 
+              internal stakeholders and external vendors, the project explored revised access solutions including bi-fold doors, 
+              stair relocation, and platform modifications to create a safer and more practical configuration for ongoing maintenance 
+              activities.
+            </p>
+            <div class="meta">IKO - Co-op</div>
+          </div>
 
-        <div class="project-card">
-          <img class="project-image" src="images/welding.jpg" alt="Welding shop redevelopment project image">
-          <h3>Welding Workshop Re-Development</h3>
-          <p>
-            This project involved the redevelopment of the welding shop into a larger and more functional maintenance workspace. 
-            The existing structure had been intended as a temporary solution but had become a long-term work area that no longer met 
-            operational needs. The redesign added storage, improved working space, electrical servicing for welders, and sufficient access 
-            for equipment and loader entry. The project required coordination with structural, civil, and electrical parties during 
-            design development, foundation work, and structural installation planning.
-          </p>
-          <div class="meta">IKO - Co-op</div>
-        </div>
+          <div class="project-card">
+            <img class="project-image" src="images/welding.jpg" alt="Welding shop redevelopment project image">
+            <h3>Welding Workshop Re-Development</h3>
+            <p>
+              This project involved the redevelopment of the welding shop into a larger and more functional maintenance workspace. 
+              The existing structure had been intended as a temporary solution but had become a long-term work area that no longer met 
+              operational needs. The redesign added storage, improved working space, electrical servicing for welders, and sufficient access 
+              for equipment and loader entry. The project required coordination with structural, civil, and electrical parties during 
+              design development, foundation work, and structural installation planning.
+            </p>
+            <div class="meta">IKO - Co-op</div>
+          </div>
 
-        <div class="project-card">
-          <img class="project-image" src="images/dust.jpg" alt="Colour plant dust collection improvement project image">
-          <h3>Colour Plant Dust Collection Improvement</h3>
-          <p>
-            This project addressed ongoing maintenance issues within the colour plant dust collection system by redesigning the 
-            ducting between the cooler and the dust collector. Frequent plugging and limited access had made the original arrangement 
-            inefficient for operations. The revised design introduced hot air from the kiln floor above to preheat the cooler ducting 
-            and reduce product buildup on the baghouse filters. The scope also included updated duct routing, larger duct sizing, damper 
-            integration, and insulation changes. Overall, the project improved serviceability, reduced anticipated maintenance demands, 
-            and created a more robust and maintainable dust collection configuration for the plant.
-          </p>
-          <div class="meta">IKO - Co-op</div>
-        </div>
+          <div class="project-card">
+            <img class="project-image" src="images/dust.jpg" alt="Colour plant dust collection improvement project image">
+            <h3>Colour Plant Dust Collection Improvement</h3>
+            <p>
+              This project addressed ongoing maintenance issues within the colour plant dust collection system by redesigning the 
+              ducting between the cooler and the dust collector. Frequent plugging and limited access had made the original arrangement 
+              inefficient for operations. The revised design introduced hot air from the kiln floor above to preheat the cooler ducting 
+              and reduce product buildup on the baghouse filters. The scope also included updated duct routing, larger duct sizing, damper 
+              integration, and insulation changes. Overall, the project improved serviceability, reduced anticipated maintenance demands, 
+              and created a more robust and maintainable dust collection configuration for the plant.
+            </p>
+            <div class="meta">IKO - Co-op</div>
+          </div>
 
-        <div class="project-card">
-          <img class="project-image" src="images/conveyor.jpg" alt="Conveyor platform reinforcement project image">
-          <h3>Conveyor Platform Reinforcement</h3>
-          <p>
-            This project addressed a structural and safety concern associated with a conveyor platform. Review of the existing support 
-            arrangement showed that the platform could safely support only about 500 lb, which was insufficient for routine maintenance 
-            activities and emergency response situations. Since maintenance or rescue work could require at least three workers along with 
-            tools and equipment, the target design capacity was increased to 2,500 lb. Because major site constraints prevented the use of 
-            conventional beam supports due to equipment travel below the platform, the design approach instead used cable supports connected 
-            to roof joists and I-beams to better distribute the load through the structure. These cables were also designed to be removable 
-            when required, allowing clearance for overhead crane operation. Overall, the project involved coordination with engineering and 
-            maintenance personnel to develop a safer and more practical platform configuration that could better support both day-to-day 
-            maintenance and emergency use.
-          </p>
-          <div class="meta">IKO - Co-op</div>
-        </div>
+          <div class="project-card">
+            <img class="project-image" src="images/conveyor.jpg" alt="Conveyor platform reinforcement project image">
+            <h3>Conveyor Platform Reinforcement</h3>
+            <p>
+              This project addressed a structural and safety concern associated with a conveyor platform. Review of the existing support 
+              arrangement showed that the platform could safely support only about 500 lb, which was insufficient for routine maintenance 
+              activities and emergency response situations. Since maintenance or rescue work could require at least three workers along with 
+              tools and equipment, the target design capacity was increased to 2,500 lb. Because major site constraints prevented the use of 
+              conventional beam supports due to equipment travel below the platform, the design approach instead used cable supports connected 
+              to roof joists and I-beams to better distribute the load through the structure. These cables were also designed to be removable 
+              when required, allowing clearance for overhead crane operation. Overall, the project involved coordination with engineering and 
+              maintenance personnel to develop a safer and more practical platform configuration that could better support both day-to-day 
+              maintenance and emergency use.
+            </p>
+            <div class="meta">IKO - Co-op</div>
+          </div>
 
-        <div class="project-card">
-          <h3>Plant Wide Working From Height Safety Improvements</h3>
-          <p>
-            This project focused on improving plant-wide safety for tasks performed at height, particularly for work above 4 feet. 
-            The scope included the design and addition of new fall arrest and fall restraint anchor points at key locations throughout 
-            the plant, along with several supporting access improvements. These included rolling stairs, platform ladders, single-person manlifts, 
-            and mini jib cranes to make maintenance work safer and more practical. These upgrades improved access to elevated work areas, 
-            reduced reliance on unsafe temporary methods, and helped create a more consistent and code-conscious approach to working-from-height 
-            activities.
-          </p>
-          <div class="meta">IKO - Co-op</div>
-        </div>
+          <div class="project-card">
+            <h3>Plant Wide Working From Height Safety Improvements</h3>
+            <p>
+              This project focused on improving plant-wide safety for tasks performed at height, particularly for work above 4 feet. 
+              The scope included the design and addition of new fall arrest and fall restraint anchor points at key locations throughout 
+              the plant, along with several supporting access improvements. These included rolling stairs, platform ladders, single-person manlifts, 
+              and mini jib cranes to make maintenance work safer and more practical. These upgrades improved access to elevated work areas, 
+              reduced reliance on unsafe temporary methods, and helped create a more consistent and code-conscious approach to working-from-height 
+              activities.
+            </p>
+            <div class="meta">IKO - Co-op</div>
+          </div>
 
-        <div class="project-card">
-          <h3>Plant Hollow Wall Analysis</h3>
-          <p>
-            This project investigated the structural integrity of walls in the plant that had been constructed years after the original 
-            building. These walls were identified during an HVAC unit installation, where concerns were raised about their suitability 
-            for supporting the design structure. The analysis confirmed that the walls were hollow and did not meet the required building 
-            design code for wind loading. As a result, we worked with an external civil consulting engineer to evaluate reinforcement options 
-            and develop a practical solution that would bring the walls to the required standard. The project involved reviewing the 
-            existing wall condition, confirming code-related deficiencies, coordinating engineering input, and planning reinforcement 
-            measures so the walls could safely support future installations and plant modifications.
-          </p>
-          <div class="meta">IKO - Co-op</div>
+          <div class="project-card">
+            <h3>Plant Hollow Wall Analysis</h3>
+            <p>
+              This project investigated the structural integrity of walls in the plant that had been constructed years after the original 
+              building. These walls were identified during an HVAC unit installation, where concerns were raised about their suitability 
+              for supporting the design structure. The analysis confirmed that the walls were hollow and did not meet the required building 
+              design code for wind loading. As a result, we worked with an external civil consulting engineer to evaluate reinforcement options 
+              and develop a practical solution that would bring the walls to the required standard. The project involved reviewing the 
+              existing wall condition, confirming code-related deficiencies, coordinating engineering input, and planning reinforcement 
+              measures so the walls could safely support future installations and plant modifications.
+            </p>
+            <div class="meta">IKO - Co-op</div>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="page" id="page-capstone">
-      <h2 class="section-title">Capstone Project | Hermes VTOL Relay UAV</h2>
+      <div class="content-wrap">
+        <h2 class="section-title">Capstone Project | Hermes VTOL Relay UAV</h2>
 
-      <div class="capstone-layout">
-        <div class="capstone-summary">
-          <p>
-            Hermes was developed as a quadcopter VTOL fixed-wing relay UAV concept intended to support search and rescue operations
-            in remote or obstructed terrain. Rather than replacing an existing search drone, Hermes was designed as a support platform
-            that could help extend communication and operational range.
-          </p>
-          <p>
-            The project evolved through concept selection, CAD development, prototype assembly, testing, and redesign. Early iterations
-            exposed lift and airflow issues, which led to major changes in the wing extender system and motor placement. Final testing
-            demonstrated stable and reliable quadcopter flight, while fixed-wing transition validation remained limited by rear propulsion
-            issues and timeline constraints.
-          </p>
+        <div class="capstone-layout">
+          <div class="capstone-summary">
+            <p>
+              Hermes was developed as a quadcopter VTOL fixed-wing relay UAV concept intended to support search and rescue operations
+              in remote or obstructed terrain. Rather than replacing an existing search drone, Hermes was designed as a support platform
+              that could help extend communication and operational range.
+            </p>
+            <p>
+              The project evolved through concept selection, CAD development, prototype assembly, testing, and redesign. Early iterations
+              exposed lift and airflow issues, which led to major changes in the wing extender system and motor placement. Final testing
+              demonstrated stable and reliable quadcopter flight, while fixed-wing transition validation remained limited by rear propulsion
+              issues and timeline constraints.
+            </p>
+          </div>
+
+          <div class="side-image">
+            <img class="project-image" src="images/hermes.jpg" alt="Hermes VTOL Relay UAV project image">
+          </div>
         </div>
 
-        <div class="side-image">
-          <img class="project-image" src="images/hermes2.jpg" alt="Hermes VTOL Relay UAV project image">
-        </div>
-      </div>
+        <div class="two-col">
+          <div class="list-panel">
+            <h3>Project focus</h3>
+            <ul>
+              <li>Extend communication range in remote search and rescue terrain</li>
+              <li>Support existing UAV operations instead of replacing them</li>
+              <li>Balance deployment flexibility with improved endurance potential</li>
+              <li>Develop a feasible capstone prototype within realistic constraints</li>
+            </ul>
+          </div>
 
-      <div class="two-col">
-        <div class="list-panel">
-          <h3>Project focus</h3>
-          <ul>
-            <li>Extend communication range in remote search and rescue terrain</li>
-            <li>Support existing UAV operations instead of replacing them</li>
-            <li>Balance deployment flexibility with improved endurance potential</li>
-            <li>Develop a feasible capstone prototype within realistic constraints</li>
-          </ul>
-        </div>
-
-        <div class="list-panel">
-          <h3>Key outcomes</h3>
-          <ul>
-            <li>VTOL deployment concept aligned well with client needs</li>
-            <li>Testing and redesign improved quadcopter stability</li>
-            <li>Relay payload integration concept proved feasible</li>
-            <li>Future work remains in transition validation and propulsion refinement</li>
-          </ul>
+          <div class="list-panel">
+            <h3>Key outcomes</h3>
+            <ul>
+              <li>VTOL deployment concept aligned well with client needs</li>
+              <li>Testing and redesign improved quadcopter stability</li>
+              <li>Relay payload integration concept proved feasible</li>
+              <li>Future work remains in transition validation and propulsion refinement</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="page reflection" id="page-reflection">
-      <h2 class="section-title">Reflection</h2>
+      <div class="content-wrap">
+        <h2 class="section-title">Reflection</h2>
 
-      <p>
-        Over the past few years, engineering has become much more than just a degree to me. Through both capstone and co-op, I learned 
-        that good engineering usually does not come from getting everything right the first time. Most of the real progress came from 
-        testing, finding what was not working, and then improving the design in a practical way. That process taught me patience, 
-        resilience, and the importance of being able to adapt when things do not go according to plan.
-      </p>
+        <p>
+          Over the past few years, engineering has become much more than just a degree to me. Through both capstone and co-op, I learned 
+          that good engineering usually does not come from getting everything right the first time. Most of the real progress came from 
+          testing, finding what was not working, and then improving the design in a practical way. That process taught me patience, 
+          resilience, and the importance of being able to adapt when things do not go according to plan.
+        </p>
 
-      <p>
-        My co-op experience showed me another side of engineering that I had not fully comprehended before. A design can look good on 
-        paper, but that does not mean much unless it can actually be built, maintained, and clearly communicated to the people using it. 
-        Working on real industrial projects made me much more aware of the connection between technical design, safety, practical constraints, 
-        and the needs of the people involved. It helped me grow not just as a student, but as someone preparing to take on real responsibility 
-        in the field.
-      </p>
+        <p>
+          My co-op experience showed me another side of engineering that I had not fully comprehended before. A design can look good on 
+          paper, but that does not mean much unless it can actually be built, maintained, and clearly communicated to the people using it. 
+          Working on real industrial projects made me much more aware of the connection between technical design, safety, practical constraints, 
+          and the needs of the people involved. It helped me grow not just as a student, but as someone preparing to take on real responsibility 
+          in the field.
+        </p>
 
-      <p>
-        Reaching the point of earning my iron ring is something I am genuinely proud of. To me, it represents much more than finishing 
-        university. It represents the hard work, sacrifices, setbacks, and growth that came with getting through this program. It also 
-        represents the responsibility that comes with becoming an engineer. The iron ring is a reminder that engineering is not only about 
-        technical ability, but also about humility, accountability, and understanding that the work we do can directly affect other people.
-      </p>
+        <p>
+          Reaching the point of earning my iron ring is something I am genuinely proud of. To me, it represents much more than finishing 
+          university. It represents the hard work, sacrifices, setbacks, and growth that came with getting through this program. It also 
+          represents the responsibility that comes with becoming an engineer. The iron ring is a reminder that engineering is not only about 
+          technical ability, but also about humility, accountability, and understanding that the work we do can directly affect other people.
+        </p>
 
-      <p>
-        Looking back, I feel proud of how much I have grown, both technically and personally. Looking ahead, I want to keep working in 
-        environments where I can combine CAD, design thinking, hands-on problem solving, and real implementation. That is the kind of 
-        work I enjoy most, and where I feel I can make the strongest contribution. As I move into the next stage of my career, earning 
-        my iron ring feels like both an achievement and a reminder of the kind of engineer I want to become.
-      </p>
+        <p>
+          Looking back, I feel proud of how much I have grown, both technically and personally. Looking ahead, I want to keep working in 
+          environments where I can combine CAD, design thinking, hands-on problem solving, and real implementation. That is the kind of 
+          work I enjoy most, and where I feel I can make the strongest contribution. As I move into the next stage of my career, earning 
+          my iron ring feels like both an achievement and a reminder of the kind of engineer I want to become.
+        </p>
+      </div>
     </section>
 
     <footer>
-      © 2026 Omindu Etipola | e-Portfolio
+      © 2026 Omindu Ashen Etipola | e-Portfolio
     </footer>
   </div>
 
