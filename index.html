@@ -27,7 +27,6 @@
       color:var(--text);
       background:#d7e7f1;
       position:relative;
-      overflow-x:hidden;
     }
 
     body::before,
@@ -36,7 +35,7 @@
       position:fixed;
       top:0;
       bottom:0;
-      width:max(120px, calc((100% - 1240px) / 2));
+      width:max(120px, calc((100vw - 1240px) / 2));
       z-index:0;
       pointer-events:none;
       background-size:cover;
@@ -49,7 +48,7 @@
     body::before{
       left:0;
       background-image:
-        linear-gradient(rgba(215,231,241,0.711), rgba(215,231,241,0.71)),
+        linear-gradient(rgba(215,231,241,0.71), rgba(215,231,241,0.71)),
         url("images/UBC.jpg");
       background-position:left;
     }
@@ -63,7 +62,6 @@
     }
 
     .page-shell{
-      width:100%;
       max-width:1240px;
       margin:0 auto;
       background:#fff;
