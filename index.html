@@ -562,6 +562,126 @@
         height:160px;
       }
     }
+      @media (max-width: 900px){
+    html, body{
+      width:100%;
+      max-width:100%;
+      overflow-x:hidden;
+    }
+
+    body::before,
+    body::after{
+      display:none !important;
+      content:none !important;
+      width:0 !important;
+    }
+
+    .page-shell{
+      width:100% !important;
+      max-width:100% !important;
+      margin:0 !important;
+      box-shadow:none !important;
+    }
+
+    .content-wrap{
+      width:100% !important;
+      max-width:100% !important;
+      margin:0 !important;
+    }
+
+    .page{
+      padding:20px 16px 28px !important;
+    }
+
+    .banner{
+      height:120px !important;
+      background:
+      linear-gradient(rgba(255,255,255,0.20), rgba(255,255,255,0.20)),
+      url("images/skyline.jpg") center 58%/cover no-repeat !important;
+    }
+
+    .site-title{
+      font-size:28px !important;
+      line-height:1.15 !important;
+      margin:12px 12px 10px !important;
+      text-align:center !important;
+    }
+
+  .top-nav{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    gap:2px;
+    padding:6px 4px !important;
+  }
+
+  .top-nav button{
+    padding:10px 12px !important;
+    font-size:12px !important;
+  }
+
+  .intro-grid,
+  .quick-facts,
+  .portfolio-grid,
+  .capstone-hero,
+  .capstone-grid,
+  .capstone-gallery,
+  .two-col{
+    grid-template-columns:1fr !important;
+  }
+
+  .portrait-box,
+  .bio-panel,
+  .subtle-box,
+  .project-card,
+  .capstone-panel,
+  .capstone-media,
+  .list-panel,
+  .fact{
+    width:100% !important;
+  }
+
+  .portrait-placeholder{
+    height:300px !important;
+  }
+
+  .project-image,
+  #page-portfolio .project-card:nth-child(1) .project-image,
+  #page-portfolio .project-card:nth-child(2) .project-image,
+  #page-portfolio .project-card:nth-child(3) .project-image,
+  #page-portfolio .project-card:nth-child(4) .project-image,
+  #page-portfolio .project-card:nth-child(5) .project-image,
+  #page-portfolio .project-card:nth-child(6) .project-image{
+    width:100% !important;
+    height:auto !important;
+    max-height:none !important;
+    object-fit:cover !important;
+  }
+
+  .capstone-tall img,
+  .capstone-medium img,
+  .capstone-gallery img{
+    width:100% !important;
+    height:auto !important;
+    max-height:none !important;
+  }
+
+  .capstone-placeholder{
+    height:140px !important;
+  }
+
+  .video-wrap iframe{
+    width:100% !important;
+    height:auto !important;
+    aspect-ratio:16 / 9 !important;
+  }
+
+  footer{
+    padding:16px !important;
+    text-align:center !important;
+  }
+}
   </style>
 </head>
 <body>
