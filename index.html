@@ -50,7 +50,7 @@
       background-image:
         linear-gradient(rgba(215,231,241,0.70), rgba(215,231,241,0.70)),
         url("images/UBC.jpg");
-      background-position:left;
+      background-position:center;
     }
 
     body::after{
@@ -58,7 +58,7 @@
       background-image:
         linear-gradient(rgba(215,231,241,0.72), rgba(215,231,241,0.72)),
         url("images/UBC.jpg");
-      background-position:right;
+      background-position:center;
     }
 
     .page-shell{
@@ -374,6 +374,13 @@
 
     .capstone-redesign-image{
       filter: brightness(0.68) contrast(1.10);
+    }
+
+    .capstone-cad-image{
+      object-fit:contain !important;
+      object-position:center;
+      background:#eef2f5;
+      padding:8px;
     }
 
     .capstone-gallery{
@@ -870,7 +877,7 @@
 
         <div class="capstone-gallery">
           <div class="capstone-media">
-            <img src="images/hermes6.jpg" alt="CAD1">
+            <img class="capstone-cad-image" src="images/hermes6.jpg" alt="CAD1">
             <div class="capstone-caption">Client approved 1st CAD design</div>
           </div>
           <div class="capstone-media">
