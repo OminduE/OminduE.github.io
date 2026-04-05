@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -50,7 +50,7 @@
       background-image:
         linear-gradient(rgba(215,231,241,0.70), rgba(215,231,241,0.70)),
         url("images/UBC.jpg");
-      background-position:center;
+      background-position:left;
     }
 
     body::after{
@@ -58,7 +58,7 @@
       background-image:
         linear-gradient(rgba(215,231,241,0.72), rgba(215,231,241,0.72)),
         url("images/UBC.jpg");
-      background-position:center;
+      background-position:right;
     }
 
     .page-shell{
@@ -505,7 +505,14 @@
         display:none;
       }
 
-      .intro-grid,
+      .intro-grid{
+        display:grid;
+        grid-template-columns:280px 720px;
+        gap:24px;
+        justify-content:center;
+        align-items:start;
+        margin-bottom:28px;
+      }
       .capstone-hero,
       .capstone-grid,
       .capstone-gallery,
