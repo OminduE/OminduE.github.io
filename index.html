@@ -297,58 +297,134 @@
       letter-spacing:.4px;
     }
 
-    .capstone-layout{
+    /* Capstone roadmap layout */
+    .capstone-hero{
       display:grid;
-      grid-template-columns:1.1fr .9fr;
+      grid-template-columns:1fr 1fr;
       gap:22px;
       align-items:start;
-      margin-bottom:26px;
+      margin-bottom:22px;
     }
 
-    .capstone-summary p{
-      font-size:15px;
-      line-height:1.8;
-      color:#4f5960;
-      margin:0 0 14px;
+    .capstone-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+      margin-bottom:22px;
     }
 
-    .side-image{
+    .capstone-panel{
       border:1px solid var(--line);
-      background:#f7f7f7;
-      padding:12px;
+      background:#fff;
+      padding:18px;
     }
 
-    .capstone-image-stack{
-      display:flex;
-      flex-direction:column;
+    .capstone-panel h3{
+      margin:0 0 10px;
+      font-size:16px;
+      color:#1f2730;
+    }
+
+    .capstone-panel p,
+    .capstone-panel li{
+      margin:0 0 12px;
+      font-size:14px;
+      line-height:1.72;
+      color:#555;
+    }
+
+    .capstone-panel ul{
+      margin:8px 0 0 18px;
+      padding:0;
+    }
+
+    .capstone-media{
+      border:1px solid var(--line);
+      background:#fafafa;
+      padding:14px;
+    }
+
+    .capstone-media img{
+      width:100%;
+      display:block;
+      border:1px solid #cfd5da;
+      background:#eef2f5;
+    }
+
+    .capstone-caption{
+      margin-top:8px;
+      font-size:12px;
+      line-height:1.4;
+      color:#6a747b;
+      font-style:italic;
+      text-align:center;
+    }
+
+    .capstone-tall img{
+      height:320px;
+      object-fit:cover;
+      object-position:center;
+    }
+
+    .capstone-medium img{
+      height:245px;
+      object-fit:cover;
+      object-position:center;
+    }
+
+    .capstone-gallery{
+      display:grid;
+      grid-template-columns:1fr 1fr;
       gap:14px;
+      margin-bottom:18px;
     }
 
-    .capstone-main-image{
-      height:200px;
-      object-fit:cover;
-      object-position:center;
-      padding:0;
-    background:#dde5ea;
+    .capstone-gallery .capstone-media{
+      margin:0;
     }
 
-    .capstone-secondary-image{
-      height:200px;
+    .capstone-gallery img{
+      height:190px;
       object-fit:cover;
       object-position:center;
-      padding:0;
-      background:#dde5ea;
     }
 
-    .capstone-third-image{
-      height:200px;
-      object-fit:cover;
-      object-position:center;
-      padding:0;
-      background:#dde5ea;
-      filter: brightness(0.72) contrast(1.08);
-    }    
-    
+    .capstone-placeholder{
+      height:190px;
+      border:1px dashed #bcc6ce;
+      background:#f5f7f9;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:#74818a;
+      font-size:13px;
+      font-weight:700;
+      padding:14px;
+    }
+
+    .video-wrap{
+      border:1px solid var(--line);
+      background:#fafafa;
+      padding:14px;
+      margin-top:4px;
+      margin-bottom:22px;
+    }
+
+    .video-wrap h3{
+      margin:0 0 12px;
+      font-size:16px;
+      color:#1f2730;
+    }
+
+    .video-wrap iframe{
+      width:100%;
+      aspect-ratio:16 / 9;
+      border:0;
+      display:block;
+      background:#000;
+    }
+
     .two-col{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -419,7 +495,9 @@
       }
 
       .intro-grid,
-      .capstone-layout,
+      .capstone-hero,
+      .capstone-grid,
+      .capstone-gallery,
       .two-col,
       .portfolio-grid,
       .quick-facts{
@@ -453,6 +531,16 @@
       #page-portfolio .project-card:nth-child(1) .project-image,
       #page-portfolio .project-card:nth-child(2) .project-image{
         height:240px;
+      }
+
+      .capstone-tall img,
+      .capstone-medium img,
+      .capstone-gallery img{
+        height:220px;
+      }
+
+      .capstone-placeholder{
+        height:160px;
       }
     }
   </style>
@@ -687,40 +775,115 @@
       </div>
     </section>
 
+    
     <section class="page" id="page-capstone">
       <div class="content-wrap">
         <h2 class="section-title">Capstone Project | Hermes VTOL Relay UAV</h2>
 
-        <div class="capstone-layout">
-          <div class="capstone-summary">
+        <div class="capstone-hero">
+          <div class="capstone-panel">
+            <h3>The Story</h3>
             <p>
-              Hermes was developed as a hybrid quadplane VTOL relay UAV intended to support search and rescue operations in remote or mountainous 
-              terrain. Rather than replacing an existing search drone, Hermes was designed as a support platform that could extend communication 
-              range between the operator and the primary UAV during beyond visual line of sight missions. The design combined a fixed-wing foam 
-              airframe with vertical lift motors mounted on carbon fiber rods and a rear propulsion motor for forward flight, allowing the system 
-              to balance vertical deployment capability with improved endurance.
+              Search and rescue operations in mountainous and heavily forested terrain are often limited by terrain obstruction, which can block line of sight and cause unstable communication links between the operator and the primary UAV. Rather than designing a completely new search drone, Hermes was developed as a support platform that could act as an aerial communication relay and help extend operational range in remote terrain.
             </p>
             <p>
-              The project progressed through concept selection, airfoil and configuration evaluation, CAD development, prototype assembly, 
-              and iterative testing. Multiple VTOL setup concepts were reviewed before selecting the quadcopter VTOL arrangement, which provided 
-              the best balance of mechanical simplicity, stable hover performance, and payload integration. A key part of the design was the 
-              integration of the DJI D-RTK 3 Multifunctional Station as the primary communication relay payload.
+              The project was shaped around a practical client need identified through work with North Shore Rescue. The goal was to create a relay UAV that could launch vertically in confined areas, operate in real field conditions, and improve communication reliability without requiring a runway or major changes to the existing search workflow.
             </p>
-            <p>
-              Testing showed that the redesigned platform could achieve stable vertical liftoff and hover in confined spaces, meeting the core 
-              deployment requirement for obstructed terrain. The final UAV featured a wingspan of about 2.0 m, a maximum takeoff weight of 7.1 kg, 
-              and an estimated maximum flight duration of roughly 1.5 hours. Overall, the project established a strong proof of concept for a practical 
-              and cost-conscious civilian relay UAV, while also identifying future work in propulsion refinement, transition validation, and autonomous 
-              flight capability.
-            </p>    
           </div>
 
-          <div class="side-image capstone-image-stack">
-          <img class="project-image capstone-main-image" src="images/hermes3.jpg" alt="Hermes VTOL Relay UAV project image">
-          <img class="project-image capstone-secondary-image" src="images/hermes2.jpg" alt="Second Hermes VTOL project image">
-          <img class="project-image capstone-third-image" src="images/hermes4.jpg" alt="third Hermes VTOL project image">
+          <div class="capstone-media capstone-tall">
+            <img src="images/hermes3.jpg" alt="Hermes final iteration image">
+            <div class="capstone-caption">Final Hermes configuration and prototype layout</div>
           </div>
-          
+        </div>
+
+        <div class="capstone-grid">
+          <div class="capstone-panel">
+            <h3>Objective</h3>
+            <ul>
+              <li>Maintain more reliable communication between the operator and search UAV in remote terrain</li>
+              <li>Support beyond visual line of sight style operation in obstructed environments</li>
+              <li>Allow rapid deployment from confined areas without runway infrastructure</li>
+              <li>Develop a practical and cost-conscious relay platform using realistic components</li>
+            </ul>
+          </div>
+
+          <div class="capstone-panel">
+            <h3>1. Concept Selection</h3>
+            <p>
+              Early in the project, multiple UAV roles and configurations were considered, including fixed-wing, quadcopter, and hybrid VTOL concepts. After reviewing client needs and the operational challenge of maintaining communication in mountainous terrain, the team selected a hybrid quadplane VTOL configuration. This layout provided the best balance of vertical deployment, stable hover performance, mechanical simplicity, and endurance potential for the relay role.
+            </p>
+          </div>
+        </div>
+
+        <div class="capstone-grid">
+          <div class="capstone-media capstone-medium">
+            <img src="images/hermes2.jpg" alt="Early Hermes prototype">
+            <div class="capstone-caption">Early flight-ready prototype used during initial testing</div>
+          </div>
+
+          <div class="capstone-panel">
+            <h3>2. Early Prototype Challenges</h3>
+            <p>
+              Once the first flight-ready prototype was assembled, testing revealed that the aircraft could not achieve the intended lift performance. Initial suspicion pointed toward battery support, but further testing showed that the main issue was airflow interference created by the motor placement above the wing. This stage of the project highlighted the importance of iterative testing and using physical results to refine the design.
+            </p>
+          </div>
+        </div>
+
+        <div class="capstone-grid">
+          <div class="capstone-panel">
+            <h3>3. Redesign and Integration</h3>
+            <p>
+              The wing extender system was redesigned so that the lift motors were positioned below the wing, which removed the major airflow interference problem and greatly improved quadcopter performance. Alongside the mechanical redesign, the project involved CAD development, prototype assembly, and integration planning for the DJI D-RTK 3 Multifunctional Station as the main communication relay payload.
+            </p>
+            <p>
+              This phase moved the project from a rough proof of concept toward a more practical engineering solution that better reflected real deployment and integration requirements.
+            </p>
+          </div>
+
+          <div class="capstone-media capstone-medium">
+            <img src="images/hermes4.jpg" alt="Hermes redesign stage">
+            <div class="capstone-caption">Redesigned prototype after wing extender and motor placement changes</div>
+          </div>
+        </div>
+
+        <div class="capstone-grid">
+          <div class="capstone-media capstone-medium">
+            <img src="images/hermes.jpg" alt="Hermes field image">
+            <div class="capstone-caption">Field-ready Hermes prototype during later-stage testing</div>
+          </div>
+
+          <div class="capstone-panel">
+            <h3>4. Final Prototype and Outcomes</h3>
+            <p>
+              Final testing demonstrated stable vertical liftoff and hover in confined spaces, confirming that the redesigned platform satisfied the main deployment requirement for obstructed terrain. The final UAV featured a wingspan of about 2.0 m, a maximum takeoff weight of 7.1 kg, and an estimated maximum flight duration of roughly 1.5 hours.
+            </p>
+            <p>
+              While full fixed-wing transition validation remained limited by propulsion issues and timeline constraints, the project still established a strong proof of concept for a practical civilian relay UAV and identified clear next steps in propulsion refinement, transition validation, and autonomy.
+            </p>
+          </div>
+        </div>
+
+        <div class="capstone-gallery">
+          <div class="capstone-media">
+            <div class="capstone-placeholder">ADD ANOTHER HERMES IMAGE LATER<br>Suggested file: images/hermes5.jpg</div>
+            <div class="capstone-caption">Future image slot for prototype, field setup, or testing photo</div>
+          </div>
+          <div class="capstone-media">
+            <div class="capstone-placeholder">ADD ANOTHER CAD / TEST IMAGE LATER<br>Suggested file: images/hermes6.jpg</div>
+            <div class="capstone-caption">Future image slot for CAD model, subsystem view, or validation test</div>
+          </div>
+        </div>
+
+        <div class="video-wrap">
+          <h3>Flight Test Video</h3>
+          <iframe
+            src="https://www.youtube.com/embed/W5S83zv9qf8"
+            title="Hermes VTOL flight video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+          <div class="capstone-caption">Flight test footage of the Hermes VTOL relay UAV</div>
         </div>
 
         <div class="two-col">
@@ -737,15 +900,16 @@
           <div class="list-panel">
             <h3>Key outcomes</h3>
             <ul>
-              <li>VTOL deployment concept aligned well with client needs</li>
-              <li>Testing and redesign improved quadcopter stability</li>
-              <li>Relay payload integration concept proved feasible</li>
-              <li>Future work remains in transition validation and propulsion refinement</li>
+              <li>Stable vertical liftoff and hover were achieved in confined spaces</li>
+              <li>Final UAV reached a wingspan of about 2.0 m and MTOW of 7.1 kg</li>
+              <li>Estimated maximum flight duration was roughly 1.5 hours</li>
+              <li>Future work remains in propulsion refinement, transition validation, and autonomy</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
+
 
     <section class="page reflection" id="page-reflection">
       <div class="content-wrap">
